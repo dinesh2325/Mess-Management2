@@ -81,9 +81,12 @@ router.get("/myprofile", viewSingleuserController);
 router.put("/updateProfile/:userId", updatesingleuserController);
 router.post("/payment/:userid", formidable(), paymentController);
 //get payments
-router.get("/getpayment", getallpayment); //get photo
+router.get("/getpayment", getallpayment); 
+//get photo
 router.get("/paymentReceipt/:pid", getpaymentPhotoController);
+//for verify payment
 router.put("/verifypayment", verifypaymentController);
+//for searching a student payment status
 router.get("/searchgetpayment", searchpaymentController);
 
 export default router;

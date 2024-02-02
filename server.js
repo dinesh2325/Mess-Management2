@@ -1,4 +1,4 @@
-//const can be replace with import in es6  (just use type:module in package.json)
+//require  can be replace with import in es6  (just use type:module in package.json)
 import express from "express";
 import dotenv, { config } from "dotenv";
 import morgan from "morgan";
@@ -15,7 +15,7 @@ connectDB();
 
 // middleware
 app.use(express.json()); //for handling json req
-app.use(morgan("dev"));
+app.use(morgan("dev"));  //for getting http req links
 dotenv.config({ path: "./.env" });
 app.use(cors());
 

@@ -4,6 +4,7 @@ import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
 
+
 const Header = () => {
   const [auth, setAuth] = useAuth();
 
@@ -38,6 +39,8 @@ const handleRoute = () => {
 
   return (
     <>
+
+   
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <button

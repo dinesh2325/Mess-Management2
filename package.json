@@ -8,7 +8,8 @@
     "start": "node server.js",
     "server": "nodemon server.js --ignore './client/'",
     "client": "npm start --prefix ./client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build:tailwind": "tailwind build client/src/index.css -o client/public/style.css"
   },
   "keywords": [],
   "author": "",
@@ -38,5 +39,8 @@
     "react-bootstrap": "^2.9.1",
     "react-chartjs-2": "^5.2.0",
     "vite-plugin-rewrite-all": "^1.0.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
   }
 }

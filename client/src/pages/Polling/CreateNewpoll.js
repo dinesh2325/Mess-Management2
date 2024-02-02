@@ -44,7 +44,7 @@ const CreatenewPoll = () => {
     return Math.random().toString(36).substring(2);
   };
 
-  const handleSubmit = async (event) => {
+    const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await axios.post("/api/v1/general/createnewpoll", {
@@ -64,6 +64,14 @@ const CreatenewPoll = () => {
     console.log("Question:", question);
     console.log("Options:", options);
   };
+
+
+  
+
+
+
+
+
 
   return (
     <div className="ui-outer ">
@@ -153,6 +161,6 @@ const CreatenewPoll = () => {
       </div>
     </div>
   );
-};
+}
 
 export default CreatenewPoll;

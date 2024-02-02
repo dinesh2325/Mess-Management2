@@ -23,8 +23,7 @@ const CreatePoll = () => {
     setOptions(newOptions);
   };
   const generateId = () => {
-    // You can use a library like uuid to generate unique IDs
-    // For simplicity, this example uses a basic approach
+    
     return Math.random().toString(36).substring(2);
   };
 

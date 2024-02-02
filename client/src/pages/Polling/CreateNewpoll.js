@@ -1,4 +1,3 @@
-
 import "./CreateNewpoll.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -86,27 +85,23 @@ const CreatenewPoll = () => {
                   Complete below fields to create a poll
                 </p>
               </div>
-             
             </div>
             <div className="mt-4">
-             
-
-<div className="d-flex flex-column">
-  <label className="mb-3 w-100 font-weight-bold content-text">
-    Poll Question
-  </label>
-  <TextField
-    type="text"
-    id="question"
-    name="question"
-    value={question}
-    onChange={(e) => setQuestion(e.target.value)}
-    required
-    className=" py-3 rounded-lg px-3 bg-light inputfield focus-shadow  focus-outline-none  border "
-    placeholder="Enter your question here..."
-  />
-  
-</div>
+              <div className="d-flex flex-column">
+                <label className="mb-3 w-100 font-weight-bold content-text">
+                  Poll Question
+                </label>
+                <TextField
+                  type="text"
+                  id="question"
+                  name="question"
+                  value={question}
+                  onChange={(e) => setQuestion(e.target.value)}
+                  required
+                  className=" py-3 rounded-lg px-3 bg-light inputfield focus-shadow  focus-outline-none  border "
+                  placeholder="Enter your question here..."
+                />
+              </div>
 
               {options.map((option, index) => (
                 <div className="options mt-2 flex-column " key={index}>
@@ -122,7 +117,7 @@ const CreatenewPoll = () => {
                           placeholder={"Option" + (index + 1)}
                           value={option.option}
                           onChange={(e) =>
-                            handleOptionChange(index,e.target.value)
+                            handleOptionChange(index, e.target.value)
                           }
                           required
                         />
@@ -164,7 +159,6 @@ const CreatenewPoll = () => {
           </div>
         </form>
       </div>
-    
     </div>
   );
 }

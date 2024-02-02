@@ -105,7 +105,7 @@
     background-color: transparent;
   }
   
- 
+  
   .cursor-pointer {
     cursor: pointer;
   }
@@ -120,11 +120,11 @@
   }
   .bg-gray-200 {
     background-color: rgba(237, 242, 247);
-     color: rgba(237, 242, 247)
+    /*previous color:-  rgba(237, 242, 247)*/
   }
   .bg-gray-200:hover {
     background-color: rgba(173, 216, 230);
-     color:  rgba(173, 216, 230)
+    /*previous color:-  rgba(173, 216, 230)*/
   }
   .radio-label:hover {
     border: 3px solid skyblue;

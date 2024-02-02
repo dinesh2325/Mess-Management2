@@ -237,12 +237,18 @@
 // export default Messmenu;
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Button from "@mui/material/Button";
+
 import Layout from "../../components/Layout/Layout";
+import Table from "react-bootstrap/Table";
 
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { Placeholder } from "react-bootstrap";
+import TextField from "@mui/material/TextField";
+import SendIcon from "@mui/icons-material/Send";
 
 const Messmenu = () => {
   const [menuData, setMenuData] = useState([]);
@@ -347,146 +353,208 @@ const Messmenu = () => {
 
   return (
     <Layout>
-      <div>
-        <h2>Weekly Menu</h2>
-        {/* Apply border styling to the table element */}
-        <table
+      <div
+        style={{
+          display: "flex",
+          border: "1px solid #ccc",
+          borderRadius: "10px",
+          padding: "10px",
+          marginTop: "20px",
+          width: "95%",
+          marginLeft: "50px",
+        }}
+      >
+        <Table
+          striped
+          responsive
+          bordered
+          hover
+          variant="dark"
           style={{
-            borderCollapse: "collapse",
-            width: "100%",
-            border: "2px solid black",
+            marginTop: "40px",
+            marginLeft: "20px",
+            width: "90.8%",
+            height: "65vh",
           }}
         >
           <thead>
-            <tr>
-              <th style={{ border: "1px solid black", padding: "8px" }}>Day</th>
-              <th style={{ border: "1px solid black", padding: "8px" }}>
-                Breakfast
-              </th>
-              <th style={{ border: "1px solid black", padding: "8px" }}>
-                Lunch
-              </th>
-              <th style={{ border: "1px solid black", padding: "8px" }}>
-                Dinner
-              </th>
+            <tr style={{ height: "80px", fontSize: "2rem" }}>
+              <th>Day</th>
+              <th>Breakfast</th>
+              <th>Lunch</th>
+              <th>Dinner</th>
             </tr>
           </thead>
           <tbody>
             {menuData.map((menu) => (
               <tr key={menu.dayOfWeek}>
-                <td style={{ border: "1px solid black", padding: "8px" }}>
-                  {menu.dayOfWeek}
-                </td>
-                <td style={{ border: "1px solid black", padding: "8px" }}>
-                  {menu.breakfast}
-                </td>
-                <td style={{ border: "1px solid black", padding: "8px" }}>
-                  {menu.lunch}
-                </td>
-                <td style={{ border: "1px solid black", padding: "8px" }}>
-                  {menu.dinner}
-                </td>
+                <td>{menu.dayOfWeek}</td>
+                <td>{menu.breakfast}</td>
+                <td>{menu.lunch}</td>
+                <td>{menu.dinner}</td>
               </tr>
             ))}
           </tbody>
-        </table>
-      </div>
+        </Table>
 
-      <div>
-        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-          <InputLabel id="demo-select-small-label">Select day</InputLabel>
-          <Select
-            labelId="demo-select-small-label"
-            id="demo-select-small"
-            value={day}
-            label="select day"
-            onChange={handleChange}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={"Sunday"}>Sunday</MenuItem>
-            <MenuItem value={"Monday"}>Monday</MenuItem>
-            <MenuItem value={"Tuesday"}>Tuesday</MenuItem>
-            <MenuItem value={"Wednesday"}>Wednesday</MenuItem>
-            <MenuItem value={"Thursday"}>Thursday</MenuItem>
-            <MenuItem value={"Friday"}>Friday</MenuItem>
-            <MenuItem value={"Saturday"}>Saturday</MenuItem>
-          </Select>
-        </FormControl>
-
-        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-          <InputLabel id="demo-select-small-label">Select time</InputLabel>
-          <Select
-            labelId="demo-select-small-label"
-            id="demo-select-small"
-            value={time}
-            label="select time"
-            onChange={handleChangetime}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={"breakfast"}>Breakfast</MenuItem>
-            <MenuItem value={"lunch"}>Lunch</MenuItem>
-            <MenuItem value={"dinner"}>Dinner</MenuItem>
-          </Select>
-        </FormControl>
-
-        <input
-          type="text"
-          value={updatedtext}
-          onChange={(e) => {
-            setUpdatedtext(e.target.value);
+        <div
+          style={{
+            marginLeft: "20px",
+            width: "25%",
+            border: "1px solid #ccc",
+            borderRadius: "10px",
+            padding: "10px",
+            height: "65vh",
+            marginTop: "40px",
           }}
-        />
+        >
+          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+            <InputLabel id="demo-select-small-label">Select day</InputLabel>
+            <Select
+              labelId="demo-select-small-label"
+              id="demo-select-small"
+              value={day}
+              label="select day"
+              onChange={handleChange}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={"Sunday"}>Sunday</MenuItem>
+              <MenuItem value={"Monday"}>Monday</MenuItem>
+              <MenuItem value={"Tuesday"}>Tuesday</MenuItem>
+              <MenuItem value={"Wednesday"}>Wednesday</MenuItem>
+              <MenuItem value={"Thursday"}>Thursday</MenuItem>
+              <MenuItem value={"Friday"}>Friday</MenuItem>
+              <MenuItem value={"Saturday"}>Saturday</MenuItem>
+            </Select>
+          </FormControl>
 
-        <button type="button" className="btn btn-primary" onClick={updatemenu}>
-          Update
-        </button>
+          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+            <InputLabel id="demo-select-small-label">Select time</InputLabel>
+            <Select
+              labelId="demo-select-small-label"
+              id="demo-select-small"
+              value={time}
+              label="select time"
+              onChange={handleChangetime}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={"breakfast"}>Breakfast</MenuItem>
+              <MenuItem value={"lunch"}>Lunch</MenuItem>
+              <MenuItem value={"dinner"}>Dinner</MenuItem>
+            </Select>
+          </FormControl>
 
-        {/* message field  */}
-        <div>
-          <div>
-            {/* Display the combined updated and previous values in a single input box */}
-            <input
-              type="text"
-              value={combinedValues.join("\n")}
-              onChange={(e) => {
-                setCombinedValues(e.target.value.split("\n"));
-              }}
-              style={{ width: "300px", height: "90px" }}
-            />
+          <div></div>
+
+          <TextField
+            id="standard-multiline-flexible"
+            label="Enter updated menu"
+            multiline
+            maxRows={4}
+            variant="filled"
+            value={updatedtext}
+            style={{ marginLeft: "7px" }}
+            onChange={(e) => {
+              setUpdatedtext(e.target.value);
+            }}
+          />
+
+          {/* message field  */}
+          <div style={{ marginLeft: "7px", marginTop: "20px" }}>
+            <div>
+              {/* Display the combined updated and previous values in a single input box */}
+
+              <TextField
+                id="standard-multiline-static"
+                value={combinedValues.join("\n")}
+                label="Updated Items..."
+                multiline
+                rows={4}
+                defaultValue="Default Value"
+                variant="standard"
+                style={{ width: "60%" }}
+                onChange={(e) => {
+                  setCombinedValues(e.target.value.split("\n"));
+                }}
+              />
+            </div>
           </div>
-          <button
-            type="button"
-            className="btn btn-danger"
-            onClick={aproveReqtoWarden}
-          >
-            Aprove Request
-          </button>
-        </div>
-      </div>
 
-      <div>
-        <h1>Warden Reply</h1>
-        {menuRequests.map(
-          (item, index) =>
-            item.status === "1" && (
-              <div key={index}>
-                <h3>Manager Requests:</h3>
-                <ul>
-                  {item.managerreq.map((request, reqIndex) => (
-                    <li key={reqIndex}>{request}</li>
-                  ))}
-                </ul>
-                <h4>Comment: {item.wardenmessage}</h4>
-                <button onClick={() => handleRemoveRequest(item._id)}>
-                  okk
-                </button>
-              </div>
-            )
-        )}
+          <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
+            <Button variant="outlined" color="success" onClick={updatemenu}>
+              Update
+            </Button>
+
+            <Button
+              variant="contained"
+              color="error"
+              onClick={aproveReqtoWarden}
+              endIcon={<SendIcon />}
+            >
+              Approve Request
+            </Button>
+          </div>
+        </div>
+
+        <div
+          style={{
+            marginLeft: "20px",
+            width: "35%",
+            border: "1px solid #ccc",
+            borderRadius: "10px",
+            padding: "10px",
+            height: "65vh",
+            marginTop: "40px",
+          }}
+        >
+          <p
+            style={{
+              textAlign: "center",
+              fontSize: "2rem",
+              fontWeight: "bold",
+            }}
+          >
+            Warden Reply
+          </p>
+          {menuRequests.map(
+            (item, index) =>
+              item.status === "1" && (
+                <div key={index}>
+                  <h3>Manager Requests:</h3>
+                  <ul>
+                    {item.managerreq.map((request, reqIndex) => (
+                      <li key={reqIndex}>{request}</li>
+                    ))}
+                  </ul>
+                  <h5>Comment: </h5>
+
+                  <p
+                    style={{
+                      border: "1px solid #ccc",
+                      borderRadius: "5px",
+                      height: "60px",
+                      width: "35%",
+                      padding: "3px",
+                    }}
+                  >
+                    {item.wardenmessage}
+                  </p>
+
+                  <Button
+                    variant="contained"
+                    color="success"
+                    onClick={() => handleRemoveRequest(item._id)}
+                  >
+                    Done
+                  </Button>
+                </div>
+              )
+          )}
+        </div>
       </div>
     </Layout>
   );

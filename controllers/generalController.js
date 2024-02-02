@@ -104,7 +104,6 @@ export const Deletereq = async (req, res) => {
   const id = req.body.id;
 
   try {
-    // Use Mongoose to find and remove data by ID
     const deletedData = await menureqModels.deleteOne(id);
 
     if (!deletedData) {

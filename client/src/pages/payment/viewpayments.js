@@ -4,6 +4,7 @@ import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import toast from "react-hot-toast";
 import { Modal } from "react-bootstrap";
+import VerifiedIcon from "@mui/icons-material/Verified";
 
 const Viewpayments = () => {
   const [Allpayment, setAllpayment] = useState([]);
@@ -108,7 +109,13 @@ const Viewpayments = () => {
           Search
         </Button>
       </div>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+        }}
+      >
         {Allpayment.map((c, index) => (
           <div
             key={c.reg}
@@ -116,7 +123,7 @@ const Viewpayments = () => {
             onMouseLeave={handleCardLeave}
             onClick={handleCardLeave}
             style={{
-              width: "30%",
+              width: "30%", // Adjust the width for three cards in a row
               margin: "1.5%",
               boxSizing: "border-box",
               padding: "20px",
@@ -125,6 +132,10 @@ const Viewpayments = () => {
               borderRadius: "8px",
               transition: "transform 0.3s ease-in-out",
               transform: `scale(${hoveredCard === index ? 1.05 : 1})`,
+              height: "300px",
+              background:
+                "linear-gradient(120deg, bisque 60%, rgb(255, 231, 222) 88%, rgb(255, 211, 195) 40%, rgba(255, 127, 80, 0.603) 48%)",
+              color: "coral",
             }}
           >
             <div>
@@ -138,7 +149,7 @@ const Viewpayments = () => {
                 alt="Payment Image"
                 style={{
                   maxWidth: "100%",
-                  maxHeight: "150px",
+                  height: "120px",
                   borderRadius: "8px",
                   cursor: "pointer",
                 }}
@@ -151,12 +162,23 @@ const Viewpayments = () => {
                 <button
                   type="button"
                   className="btn btn-success m-lg-5"
+                  style={{ background: "rgb(252, 69, 59) " }}
                   onClick={() => handleApprove(c.student, c._id)}
                 >
                   Verify
                 </button>
               ) : (
-                <span style={{ marginLeft: "50px" }}>Verified</span>
+                <span
+                  style={{
+                    marginLeft: "50px",
+                    fontWeight: "bold",
+                    border: "2px solid #000",
+                    borderRadius: "4px",
+                    padding: "2px",
+                  }}
+                >
+                  <VerifiedIcon /> Verified
+                </span>
               )}
               <hr />
             </div>

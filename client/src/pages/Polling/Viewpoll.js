@@ -78,25 +78,25 @@
 //           >
 //             Options:
 //           </label>
-//           {options.map((option, index) => (
-//             <div key={option.id} style={{ marginBottom: "16px" }}>
-//               <input
-//                 type="radio"
-//                 id={`option-${index}`}
-//                 name="selectedOption"
-//                 value={index}
-//                 checked={selectedOption === index}
-//                 onChange={() => setSelectedOption(index)}
-//                 style={{
-//                   marginRight: "8px",
-//                 }}
-//               />
-//               <label htmlFor={`option-${index}`}>
-//                 {option.options}
-//                 {/* Adjust this line to display the option value */}
-//               </label>
-//             </div>
-//           ))}
+// {options.map((option, index) => (
+//   <div key={option.id} style={{ marginBottom: "16px" }}>
+//     <input
+//       type="radio"
+//       id={`option-${index}`}
+//       name="selectedOption"
+//       value={index}
+//       checked={selectedOption === index}
+//       onChange={() => setSelectedOption(index)}
+//       style={{
+//         marginRight: "8px",
+//       }}
+//     />
+//     <label htmlFor={`option-${index}`}>
+//       {option.options}
+//       {/* Adjust this line to display the option value */}
+//     </label>
+//   </div>
+// ))}
 
 //           <button
 //             type="submit"
@@ -123,14 +123,18 @@
 
 // export default Viewpoll;
 
-// PollComponent.jsx
-
 import React, { useState, useEffect } from "react";
-import "./Viewpoll.css";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAuth } from "../../context/auth";
+import { Radio } from "@mui/material";
+import "./Viewpoll.css";
+import Button from "@mui/material/Button";
+
+import PollIcon from "@mui/icons-material/Poll";
+
+import { RadioGroup, FormControlLabel } from "@mui/material";
 
 const Viewpoll = () => {
   const navigate = useNavigate();
@@ -141,10 +145,6 @@ const Viewpoll = () => {
   const [pollId, setPollId] = useState("");
   const [validuser, setValidUser] = useState(0);
   const username = auth?.user?.name;
-
-  const handleOptionClick = (index) => {
-    setSelectedOption(index === selectedOption ? null : index);
-  };
 
   useEffect(() => {
     // Fetch existing poll data if pollId is provided
@@ -177,67 +177,82 @@ const Viewpoll = () => {
         selectedOption: options[selectedOption],
         username,
       });
+      toast.success("Poll submitted successfully");
       console.log("Poll updated successfully:", response.data);
+
       navigate("/dashboard/student");
     } catch (error) {
+      toast.error("Error submitting poll");
       console.error("Error submitting poll:", error);
     }
   };
   console.log(`your id is${validuser}`);
-
   return (
-    <div>
-      {validuser === 0 && pollId ? (
-        <>
-          <div className="wrapper">
-            <header>Poll UI Design</header>
-            <form onSubmit={handleSubmit}>
-              <div className="poll-area">
-                {options.map((option, index) => (
-                  <label
-                    key={option.id}
-                    className={`opt-${index} ${
-                      selectedOption === index - 1 ? "selected" : ""
-                    }`}
-                    onClick={() => handleOptionClick(index - 1)}
-                  >
-                    <div className="row">
-                      <div className="column">
-                        <span className="circle"></span>
-                        <span className="text">
-                          {index}.{option.options}
-                        </span>
-                      </div>
-                      <span className="percent">{option.count}</span>
-                    </div>
-                    <div
-                      className="progress"
-                      style={{ "--w": 30 * index }}
-                    ></div>
-                  </label>
-                ))}
-              </div>
-              <button
-                type="submit"
-                style={{
-                  backgroundColor: "#4caf50",
-                  color: "#fff",
-                  padding: "10px",
-                  border: "none",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                }}
-              >
-                Submit
-              </button>
-            </form>
-          </div>
-        </>
-      ) : validuser === 1 ? (
-        <p>You have done polling</p>
-      ) : (
-        <p>No poll available</p>
-      )}
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignContent: "center",
+        marginTop: "50px",
+      }}
+    >
+      <div className="wrappers">
+        {validuser === 0 && pollId ? (
+          <form onSubmit={handleSubmit} className="poll-area">
+            <p style={{ fontWeight: "bold", marginTop: 100, fontSize: 30 }}>
+              {question} ?{" "}
+            </p>
+            <hr />
+
+            <RadioGroup
+              aria-labelledby="demo-controlled-radio-buttons-group"
+              name="controlled-radio-buttons-group"
+              value={selectedOption}
+              onChange={(event) => setSelectedOption(event.target.value)}
+            >
+              {options.map((option, index) => (
+                <FormControlLabel
+                  key={index}
+                  value={index}
+                  control={<Radio />}
+                  label={
+                    <>
+                      {`${option.options} `}
+                      <PollIcon style={{ marginLeft: "160px" }} />
+                      {` (${option.count})`}
+                    </>
+                  }
+                />
+              ))}
+            </RadioGroup>
+
+            <hr />
+            {/* <button
+             
+              style={{
+                backgroundColor: "blue",
+                color: "white",
+                padding: "10px",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+                width: "200px",
+                margin: "0 auto",
+              }}
+            >
+              Vote
+            </button> */}
+
+            <Button type="submit" variant="contained">
+              Vote
+            </Button>
+          </form>
+        ) : validuser === 1 ? (
+          <p>You have done polling</p>
+        ) : (
+          <p>No poll available</p>
+        )}
+      </div>
     </div>
   );
 };

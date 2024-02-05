@@ -23,27 +23,16 @@ const Meal = () => {
         <div className="heading" style={{ color: "black" }}>
           <h1>Search Your Food Recipe</h1>
         </div>
-        {/* <div className="searchBox">
+        <div className="searchBox">
           <input
             type="search"
             className="search-bar"
             onChange={(e) => setSearch(e.target.value)}
             value={search}
+            placeholder="search your food item here..."
             onKeyPress={searchMeal}
             style={{ border: "1px solid black" }}
           />
-        </div> */}
-        <div className="wrap">
-          <div className="search">
-            <input
-              type="text"
-              className="searchTerm"
-              placeholder="What are you looking for?"
-            />
-            <button type="submit" className="searchButton">
-              <i className="fa fa-search" />
-            </button>
-          </div>
         </div>
 
         <div className="container">

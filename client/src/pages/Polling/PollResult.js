@@ -95,10 +95,12 @@
 
 // export default PollResult;
 
+//2.....
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import Button from "@mui/material/Button";
 import {
   BarChart,
   Bar,
@@ -176,6 +178,7 @@ const PollResult = () => {
         style={{
           display: "flex",
           justifyContent: "center",
+          alignContent: "center",
           marginTop: 10,
         }}
       >
@@ -251,23 +254,18 @@ const PollResult = () => {
       ) : (
         <p>No poll available</p>
       )}
-
-      <button
-        type="button"
-        onClick={handleSubmit}
+      <div
         style={{
-          backgroundColor: "#4caf50",
-          color: "#fff",
-          padding: "10px",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer",
-          alignSelf: "center",
-          marginTop: "30px",
+          display: "flex",
+          justifyContent: "center",
+          alignContent: "center",
+          margintop: 50,
         }}
       >
-        Delete Poll
-      </button>
+        <Button onClick={handleSubmit} variant="contained">
+          Delete
+        </Button>
+      </div>
     </div>
   );
 };

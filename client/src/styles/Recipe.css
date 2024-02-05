@@ -37,7 +37,7 @@
     justify-content: space-around;
     flex-wrap: wrap;
 }
-.card{
+.card_i{
     width:300px;
     height:400px;
     margin:1.5rem;
@@ -48,27 +48,27 @@
     overflow: auto;
     position:relative;
 }
-.card img{
+.card_i img{
     width:100%;
 }
-.card .info{
+.card_i .info{
     color:rgb(255, 255, 255);  
     text-align: center;
   }
  
-  .card .info h2{
+  .card_i .info h2{
       margin:0;
       font-weight: 900;
       margin-top: 15px;
       color: rgb(252, 247, 247);
   }
-  .card .info p{
+  .card_i .info p{
     margin: 0;
     font-size: 17px;
     letter-spacing: 2px;
     margin-top: 10px;
 }
-.card:before{
+.card_i:before{
     content:"";
     position:absolute;
     top:0;
@@ -78,12 +78,12 @@
     background: linear-gradient(rgba(252, 133, 191, 0.988),rgb(255, 150, 187));
     transition:0.2s All;
 }
-.card:hover:before{
+.card_i:hover:before{
     height: 100%;  
    
 }
 
-.card .recipe{
+.card_i .recipe{
     position: absolute;
     top:0;
     left:0;
@@ -92,7 +92,7 @@
     display: none;
     transition: 0.3s all;
 }
-.card:hover .recipe{
+.card_i:hover .recipe{
     display:block;
 }
 .recipe h2{
@@ -116,7 +116,7 @@
     text-decoration: none;
     color: aliceblue;
 }
-.card-body{
+.card_i-body{
     width:300px;
     height:400px;
     box-shadow:5px 5px 10px black;

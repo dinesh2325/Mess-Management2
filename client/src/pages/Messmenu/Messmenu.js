@@ -509,6 +509,8 @@ const Messmenu = () => {
             padding: "10px",
             height: "65vh",
             marginTop: "40px",
+            overflowY: "auto", // Add overflowY for vertical scrollbar
+            maxHeight: "600px", // Set a fixed height for the card
           }}
         >
           <p
@@ -551,6 +553,7 @@ const Messmenu = () => {
                   >
                     Done
                   </Button>
+                  <hr />
                 </div>
               )
           )}

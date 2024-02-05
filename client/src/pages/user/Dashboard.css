@@ -32,7 +32,7 @@ EDIT ON
 .ag-courses-item_link {
   display: block;
   padding: 30px 20px;
-  background-color: #121212;
+  background: radial-gradient(circle, rgb(255, 208, 191) 0%, rgb(253, 123, 84) 100%);
   text-decoration: none;
 
   overflow: hidden;
@@ -71,16 +71,16 @@ EDIT ON
 }
 .ag-courses-item_date {
   font-weight: bold;
-  color: #f9b234;
+  color: #f7f2eb;
 
-  -webkit-transition: color .5s ease;
-  -o-transition: color .5s ease;
-  transition: color .5s ease
+  -webkit-transition: color 1s ease;
+  -o-transition: color 1s ease;
+  transition: color 1s ease
 }
 .ag-courses-item_bg {
   height: 128px;
   width: 128px;
-  background-color: #f9b234;
+  background-color: #fc6348;
 
   z-index: 1;
   position: absolute;
@@ -89,24 +89,24 @@ EDIT ON
 
   border-radius: 50%;
 
-  -webkit-transition: all .5s ease;
-  -o-transition: all .5s ease;
-  transition: all .5s ease;
+  -webkit-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
 }
 .ag-courses_item:nth-child(2n) .ag-courses-item_bg {
-  background-color: #3ecd5e;
+  background-color: #fc6348;
 }
 .ag-courses_item:nth-child(3n) .ag-courses-item_bg {
-  background-color: #e44002;
+  background-color: #fc6348;
 }
 .ag-courses_item:nth-child(4n) .ag-courses-item_bg {
-  background-color: #952aff;
+  background-color: #fc6348;
 }
 .ag-courses_item:nth-child(5n) .ag-courses-item_bg {
-  background-color: #cd3e94;
+  background-color: #fc6348;
 }
 .ag-courses_item:nth-child(6n) .ag-courses-item_bg {
-  background-color: #4c49ea;
+  background-color: #fc6348;
 }
 
 

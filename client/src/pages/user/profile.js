@@ -82,7 +82,7 @@
 //         <p>Loading...</p>
 //       ) : (
 //         <div
-//           className="container bootstrap snippets bootdey"
+//           className="containerr bootstrap snippets bootdey"
 //           style={{ maxWidth: "800px", margin: "50px auto" }}
 //         >
 //           <h1 className="text-primary text-center mb-4">Edit Profile</h1>
@@ -336,7 +336,7 @@ const Profile = () => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div className="container">
+        <div className="containerr">
           <div className="title">Update Profile</div>
           <div className="content">
             <form action="#" onSubmit={handleSave}>

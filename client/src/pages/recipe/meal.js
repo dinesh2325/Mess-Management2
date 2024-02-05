@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-// import "../../styles/Recipe.css";
+import "../../styles/Recipe.css";
+import "./mealsearch.css";
 import Mealitem from "./mealitem";
 const Meal = () => {
   const [search, setSearch] = useState("");
@@ -14,6 +15,7 @@ const Meal = () => {
           setSearch("");
         });
     }
+    console.log("Mymeal");
   };
   return (
     <>
@@ -27,16 +29,18 @@ const Meal = () => {
             className="search-bar"
             onChange={(e) => setSearch(e.target.value)}
             value={search}
+            placeholder="search your food item here..."
             onKeyPress={searchMeal}
             style={{ border: "1px solid black" }}
           />
         </div>
+
         <div className="container">
           {Mymeal == null ? (
             <p className="notSearch">Not found</p>
           ) : (
             Mymeal.map((res) => {
-              return <Mealitem data={res} />;
+              return <Mealitem key={res.idMeal} data={res} />;
             })
           )}
         </div>

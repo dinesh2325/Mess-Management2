@@ -1,4 +1,4 @@
-/* 
+
 .heading h1{
     color:white;
     font-size: 48px;
@@ -37,55 +37,53 @@
     justify-content: space-around;
     flex-wrap: wrap;
 }
-.card{
+.card_i{
     width:300px;
     height:400px;
     margin:1.5rem;
-    background: linear-gradient(to left,rgb(204, 255, 51,0.5),to left,rgb(255, 255, 255,0.9));
+    background: linear-gradient(rgba(252, 133, 191, 0.988),rgb(255, 150, 187));
     border-radius: 8px;
-    box-shadow: 0 7px 12px rgb(204, 255, 51,0.5);
+    box-shadow: 0 7px 12px rgba(28, 29, 26, 0.5);
     box-sizing: border-box;
     overflow: auto;
     position:relative;
 }
-.card img{
+.card_i img{
     width:100%;
 }
-.card .info{
+.card_i .info{
     color:rgb(255, 255, 255);  
     text-align: center;
   }
  
-  .card .info h2{
+  .card_i .info h2{
       margin:0;
       font-weight: 900;
       margin-top: 15px;
-      color: rgb(26, 25, 25);
+      color: rgb(252, 247, 247);
   }
-  .card .info p{
+  .card_i .info p{
     margin: 0;
     font-size: 17px;
     letter-spacing: 2px;
     margin-top: 10px;
 }
-.card:before{
+.card_i:before{
     content:"";
     position:absolute;
     top:0;
     left:0;
     height:0;
     width:100%;
-    background: linear-gradient(to bottom,rgb(204, 255, 51,0.7),rgb(204, 255, 51,0.9));
+    background: linear-gradient(rgba(252, 133, 191, 0.988),rgb(255, 150, 187));
     transition:0.2s All;
 }
-.card:hover:before{
+.card_i:hover:before{
     height: 100%;  
    
 }
-.card:hover{
-    background: linear-gradient(to bottom,rgb(204, 255, 51,0.7),rgb(204, 255, 51,0.9));  
-}
-.card .recipe{
+
+.card_i .recipe{
     position: absolute;
     top:0;
     left:0;
@@ -94,7 +92,7 @@
     display: none;
     transition: 0.3s all;
 }
-.card:hover .recipe{
+.card_i:hover .recipe{
     display:block;
 }
 .recipe h2{
@@ -115,11 +113,16 @@
 .recipe a{   
     display: block;
     text-align: center;
+    text-decoration: none;
+    color: aliceblue;
 }
-.card-body{
+.card_i-body{
     width:300px;
     height:400px;
     box-shadow:5px 5px 10px black;
     border:1px solid black;
     color:red;
-  } */
+  }
+
+  
+  

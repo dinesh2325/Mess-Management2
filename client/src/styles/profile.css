@@ -13,7 +13,7 @@
   padding: 10px;
   /* background: linear-gradient(135deg, #71b7e6, #9b59b6); */
 
-.container{
+.containerr{
   margin-top: 90px;
   max-width: 500px;
   width: 100%;
@@ -24,7 +24,7 @@
 }
 
 
-.container .title{
+.containerr .title{
   font-size: 25px;
   font-weight: 500;
   position: relative;
@@ -32,7 +32,7 @@
   text-align: center;
   font-weight: bold;
 }
-/* .container .title::before{
+/* .containerr .title::before{
   content: "";
   position: absolute;
   left: 0;
@@ -122,7 +122,7 @@ form .input-box span.details{
   }
   
  @media(max-width: 584px){
- .container{
+ .containerr{
   max-width: 100%;
 }
 form .user-details .input-box{
@@ -141,7 +141,7 @@ form .user-details .input-box{
   }
   }
   @media(max-width: 459px){
-  .container .content .category{
+  .containerr .content .category{
     flex-direction: column;
   }
 }

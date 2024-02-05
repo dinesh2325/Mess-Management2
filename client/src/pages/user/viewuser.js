@@ -147,7 +147,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../context/auth";
-import { Button, Alert, Card } from 'react-bootstrap';
+import { Button, Alert, Card } from "react-bootstrap";
+import "./viewuser.css";
 
 const Viewuser = () => {
   const [Alluser, setAlluser] = useState([]);
@@ -168,7 +169,7 @@ const Viewuser = () => {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       // Trigger search on Enter key press
       handleSearch();
     }
@@ -278,7 +279,7 @@ const Viewuser = () => {
           Search
         </Button>
       </div>
-      
+
       {showAlert && (
         <Alert
           variant={alertVariant}
@@ -289,7 +290,7 @@ const Viewuser = () => {
         </Alert>
       )}
 
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+      {/* <div style={{ display: "flex", flexWrap: "wrap" }} >
         {Alluser.map((c, index) => (
           <Card
             key={c.reg}
@@ -325,6 +326,49 @@ const Viewuser = () => {
             </Card.Body>
             <hr />
           </Card>
+
+
+
+
+
+
+
+        ))}
+      </div> */}
+
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        {Alluser.map((c, index) => (
+          <div
+            className="flip-card"
+            key={c.reg}
+            onMouseEnter={() => handleCardHover(index)}
+            onMouseLeave={handleCardLeave}
+            onClick={handleCardLeave}
+            style={{
+              width: "30%",
+              margin: "1.5%",
+              boxSizing: "border-box",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+              // border: "2px solid #ccc",
+              borderRadius: "8px",
+              transition: "transform 0.3s ease-in-out",
+              transform: `scale(${hoveredCard === index ? 1.05 : 1})`,
+            }}
+          >
+            <div className="flip-card-inner">
+              <div className="flip-card-front">
+                <p className="title">Name: {c.name}</p>
+                <p>Reg no.: {c.reg}</p>
+              </div>
+              <div className="flip-card-back">
+                <p className="title">
+                  <p>Email: {c.email}</p>
+                  <p>Phone no.: {c.phone}</p>
+                  <p>Hostel: {c.hostel}</p>
+                </p>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </div>

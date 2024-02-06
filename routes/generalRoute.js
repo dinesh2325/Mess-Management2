@@ -23,6 +23,9 @@ import {
   searchpaymentController,
   expensesController,
   viewAllexpensesController,
+  createNoticeController,
+  showAllNoticesController,
+  getNoticePdfController,
 } from "./../controllers/generalController.js";
 import {
   ApproveMenuReq,
@@ -32,6 +35,8 @@ import {
 } from "../controllers/generalController.js";
 
 import formidable from "express-formidable";
+import { isWarden, requireSignIn } from "../middlewares/authMiddleware.js";
+import upload from "../multerconfig.js";
 
 const router = express.Router();
 
@@ -64,7 +69,6 @@ router.post("/expenses", expensesController);
 
 router.get("/viewexpenses", viewAllexpensesController);
 
-
 //create new poll
 router.post("/createnewpoll", createNewPollController);
 //create poll
@@ -81,12 +85,27 @@ router.get("/myprofile", viewSingleuserController);
 router.put("/updateProfile/:userId", updatesingleuserController);
 router.post("/payment/:userid", formidable(), paymentController);
 //get payments
-router.get("/getpayment", getallpayment); 
+router.get("/getpayment", getallpayment);
 //get photo
 router.get("/paymentReceipt/:pid", getpaymentPhotoController);
 //for verify payment
 router.put("/verifypayment", verifypaymentController);
 //for searching a student payment status
 router.get("/searchgetpayment", searchpaymentController);
+
+//createnotice
+router.post(
+  "/createnotice",
+  // requireSignIn,
+  // isWarden,
+  upload.single("pdf"),
+  createNoticeController
+);
+
+//show all notices
+router.get("/allnotices", showAllNoticesController);
+
+//show pdf
+router.get("/downloadpdf/:noticeId", getNoticePdfController);
 
 export default router;

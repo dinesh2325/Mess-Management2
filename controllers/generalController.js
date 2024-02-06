@@ -9,7 +9,11 @@ import userModels from "../models/userModels.js";
 import paymentModels from "../models/paymentModels.js";
 import fs from "fs";
 import Item from "../models/expensesModels.js";
+import noticemodel from "../models/noticeModels.js";
 
+import path from "path";
+
+import upload from "../multerconfig.js";
 //for menu approval req
 export const menureqsend = async (req, res) => {
   try {
@@ -502,13 +506,13 @@ export const paymentController = async (req, res) => {
   }
 };
 
-
-//for expenses 
+//for expenses
 
 export const expensesController = async (req, res) => {
   try {
     // Extract data from the request body
-    const { food, general, dairy, spoon, plates, glass, description } = req.body;
+    const { food, general, dairy, spoon, plates, glass, description } =
+      req.body;
 
     // Create a new item document using the Item model
     const newItem = new Item({
@@ -527,7 +531,7 @@ export const expensesController = async (req, res) => {
     // Respond with a success message
     res.status(201).json({
       success: true,
-      message: 'Expenses data saved successfully',
+      message: "Expenses data saved successfully",
       newItem,
     });
   } catch (error) {
@@ -536,10 +540,10 @@ export const expensesController = async (req, res) => {
     res.status(500).json({
       success: false,
       error,
-      message: 'Error saving expenses data',
+      message: "Error saving expenses data",
     });
   }
-}
+};
 // all expenses data to warden
 
 export const viewAllexpensesController = async (req, res) => {
@@ -668,5 +672,79 @@ export const searchpaymentController = async (req, res) => {
       success: false,
       message: "Internal server error",
     });
+  }
+};
+
+//show all notices
+export const showAllNoticesController = async (req, res) => {
+  try {
+    const allNotices = await noticemodel.find();
+    res.status(200).json({ notices: allNotices });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ status: "error" });
+  }
+};
+
+// create notice
+
+export const createNoticeController = async (req, res) => {
+  try {
+    const { title, link, content } = req.body;
+
+    let encodedPdf = null;
+    if (req.file) {
+      const fileName = req.file.filename;
+      // Read the PDF file as binary data
+      const pdfData = fs.readFileSync(path.join("./files", fileName));
+      // Encode the PDF data to Base64
+      encodedPdf = pdfData.toString("base64");
+    }
+
+    // Create a new notice model with title, link, content, and encoded PDF
+    const newNotice = new noticemodel({
+      title,
+      link,
+      content,
+      pdf: encodedPdf, // Store the encoded PDF in MongoDB
+    });
+
+    // Save the notice to MongoDB
+    await newNotice.save();
+
+    console.log("Notice created successfully.");
+
+    res.status(201).json({ status: "ok" });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ status: "error" });
+  }
+};
+
+// downlaod pdf
+
+export const getNoticePdfController = async (req, res) => {
+  const { noticeId } = req.params;
+
+  try {
+    const document = await noticemodel.findOne({ _id: noticeId });
+
+    if (document && document.pdf) {
+      // Decode the Base64-encoded PDF data to binary
+      const decodedPdf = Buffer.from(document.pdf, "base64");
+      res.setHeader("Content-Type", "application/pdf");
+      res.setHeader(
+        "Content-Disposition",
+        `inline; filename=${document.title}.pdf`
+      );
+      return res.status(200).end(decodedPdf);
+    }
+
+    return res
+      .status(404)
+      .json({ error: "Document not found or no PDF content available." });
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };

@@ -35,10 +35,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "0",
     },
-    avatar: {
-      data: Buffer, // Image data stored as Buffer
-      contentType: String, // MIME type of the image
-    },
     paid: {
       type: String,
       default: "0",
@@ -46,6 +42,9 @@ const userSchema = new mongoose.Schema(
     role: {
       type: Number,
       default: 0,
+    },
+    avatar: {
+      type: String,
     },
   },
   { timestamps: true }

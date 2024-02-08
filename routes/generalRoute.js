@@ -23,6 +23,13 @@ import {
   searchpaymentController,
   expensesController,
   viewAllexpensesController,
+  updatephotoController,
+  displayphotoController,
+  createGuestController,
+  getGuestDataByEmail,
+  braintreeTokenController,
+  brainTreePaymentController,
+  receiptController,
 } from "./../controllers/generalController.js";
 import {
   ApproveMenuReq,
@@ -64,7 +71,6 @@ router.post("/expenses", expensesController);
 
 router.get("/viewexpenses", viewAllexpensesController);
 
-
 //create new poll
 router.post("/createnewpoll", createNewPollController);
 //create poll
@@ -79,14 +85,34 @@ router.post("/unblockuser", unblockUserController);
 router.get("/viewFilteredUsers", viewFilteredUsersController);
 router.get("/myprofile", viewSingleuserController);
 router.put("/updateProfile/:userId", updatesingleuserController);
+
 router.post("/payment/:userid", formidable(), paymentController);
 //get payments
-router.get("/getpayment", getallpayment); 
+router.get("/getpayment", getallpayment);
 //get photo
 router.get("/paymentReceipt/:pid", getpaymentPhotoController);
 //for verify payment
 router.put("/verifypayment", verifypaymentController);
 //for searching a student payment status
 router.get("/searchgetpayment", searchpaymentController);
+
+//update photo
+router.put("/updatephoto/:userId", updatephotoController);
+//get photo
+router.get("/avatar", displayphotoController);
+
+//geust data
+router.get("/guestdetail", getGuestDataByEmail);
+
+//guest
+router.post("/guests", createGuestController);
+
+//payment braintree
+//token
+router.get("/braintree", braintreeTokenController);
+//payment
+//payments
+router.post("/braintree/payment", brainTreePaymentController);
+router.get("/receipt/:id", receiptController);
 
 export default router;

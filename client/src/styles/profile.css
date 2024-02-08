@@ -15,9 +15,10 @@
 
 .containerr{
   margin-top: 90px;
-  max-width: 500px;
+  max-width: 700px;
+  
   width: 100%;
-  background-color: #ab9a9a;
+  background: linear-gradient(135deg,rgb(248, 226, 156),rgb(253, 211, 43));
   padding: 25px 30px;
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.15);
@@ -31,6 +32,7 @@
   text-decoration:underline;
   text-align: center;
   font-weight: bold;
+  color: #fff;
 }
 /* .containerr .title::before{
   content: "";
@@ -114,7 +116,7 @@ form .input-box span.details{
    letter-spacing: 1px;
    cursor: pointer;
    transition: all 0.3s ease;
-   background: linear-gradient(135deg, #71b7e6, #9b59b6);
+   background: linear-gradient(135deg, #ffb6c3, #f40973);
  }
  form .button input:hover{
   /* transform: scale(0.99); */

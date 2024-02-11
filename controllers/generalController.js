@@ -9,6 +9,11 @@ import userModels from "../models/userModels.js";
 import paymentModels from "../models/paymentModels.js";
 import fs from "fs";
 import Item from "../models/expensesModels.js";
+import GuestModels from "../models/GuestModels.js";
+import braintree from "braintree";
+
+import dotenv from "dotenv";
+dotenv.config();
 
 //for menu approval req
 export const menureqsend = async (req, res) => {
@@ -457,6 +462,64 @@ export const updatesingleuserController = async (req, res) => {
   }
 };
 
+//photo update
+export const updatephotoController = async (req, res) => {
+  try {
+    const { base64Image } = req.body;
+
+    // Update the user's avatar field with the base64 image string
+    const updatedUser = await userModels.findByIdAndUpdate(
+      req.params.userId,
+      { avatar: base64Image },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).send("User not found");
+    }
+
+    res.status(200).send("Photo updated successfully");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+//photo display
+
+export const displayphotoController = async (req, res) => {
+  const { userId } = req.query;
+
+  try {
+    // Find the user by ID
+    const user = await userModels.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Return the avatar data
+    res.status(200).json({ avatar: user.avatar });
+  } catch (error) {
+    console.error("Error fetching avatar:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+// export const displayphotoController = async (req, res) => {
+//   try {
+//     // Fetch avatar image from the database
+//     const userAvatar = await userModels.findById(req.user.id).select("avatar");
+//     if (!userAvatar || !userAvatar.avatar) {
+//       return res.status(404).json({ error: "Avatar not found" });
+//     }
+//     res.set("Content-Type", "image/jpeg"); // Assuming the image format is JPEG, adjust accordingly
+//     res.send(userAvatar.avatar);
+//   } catch (error) {
+//     console.error("Error fetching avatar:", error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// };
+
 //payment controlller
 export const paymentController = async (req, res) => {
   try {
@@ -502,13 +565,13 @@ export const paymentController = async (req, res) => {
   }
 };
 
-
-//for expenses 
+//for expenses
 
 export const expensesController = async (req, res) => {
   try {
     // Extract data from the request body
-    const { food, general, dairy, spoon, plates, glass, description } = req.body;
+    const { food, general, dairy, spoon, plates, glass, description } =
+      req.body;
 
     // Create a new item document using the Item model
     const newItem = new Item({
@@ -527,7 +590,7 @@ export const expensesController = async (req, res) => {
     // Respond with a success message
     res.status(201).json({
       success: true,
-      message: 'Expenses data saved successfully',
+      message: "Expenses data saved successfully",
       newItem,
     });
   } catch (error) {
@@ -536,10 +599,10 @@ export const expensesController = async (req, res) => {
     res.status(500).json({
       success: false,
       error,
-      message: 'Error saving expenses data',
+      message: "Error saving expenses data",
     });
   }
-}
+};
 // all expenses data to warden
 
 export const viewAllexpensesController = async (req, res) => {
@@ -668,5 +731,155 @@ export const searchpaymentController = async (req, res) => {
       success: false,
       message: "Internal server error",
     });
+  }
+};
+
+//guest detail
+export const createGuestController = async (req, res) => {
+  try {
+    const newGuest = await GuestModels.create(req.body);
+    res.status(200).send({
+      success: true,
+      message: "Make payment now!!!",
+    });
+  } catch (error) {
+    res.status(400).send({
+      success: true,
+      message: "Detail submission failed!!!",
+    });
+  }
+};
+
+//guest data
+export const getGuestDataByEmail = async (req, res) => {
+  const { email } = req.query;
+
+  try {
+    const userData = await GuestModels.findOne({ email });
+
+    if (!userData) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json(userData);
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+//payment controller
+
+//payment gateway
+var gateway = new braintree.BraintreeGateway({
+  environment: braintree.Environment.Sandbox,
+  merchantId: process.env.BRIANTREE_MERCHANT_ID,
+  publicKey: process.env.BRIANTREE_PUBLIC_KEY,
+  privateKey: process.env.BRIANTREE_PRIVATE_KEY,
+});
+
+//payment gateway api
+//token
+export const braintreeTokenController = async (req, res) => {
+  try {
+    gateway.clientToken.generate({}, function (err, response) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(response);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//payment
+// export const brainTreePaymentController = async (req, res) => {
+//   try {
+//     const { nonce, totalamount, guestid } = req.body;
+
+//     gateway.transaction.sale(
+//       {
+//         amount: totalamount,
+//         paymentMethodNonce: nonce,
+//         options: {
+//           submitForSettlement: true,
+//         },
+//       },
+//       function (error, result) {
+//         if (result) {
+//           console.log(result);
+//           res.json({ ok: true });
+//         } else {
+//           console.error("Error processing transaction:", error);
+//           res.status(500).send(error);
+//         }
+//       }
+
+//     );
+//   } catch (error) {
+//     console.error("Error in payment controller:", error);
+//     res.status(500).send(error);
+//   }
+// };
+export const brainTreePaymentController = async (req, res) => {
+  try {
+    const { nonce, totalamount, guestid } = req.body;
+
+    // Assuming you have a model named Guest and you can use it to update the payment information
+    const guest = await GuestModels.findById(guestid);
+    if (!guest) {
+      return res.status(404).json({ error: "Guest not found" });
+    }
+
+    // Update the guest's payment information
+    guest.totalPayment = totalamount;
+    await guest.save();
+
+    // Process the payment with BrainTree
+    gateway.transaction.sale(
+      {
+        amount: totalamount,
+        paymentMethodNonce: nonce,
+        options: {
+          submitForSettlement: true,
+        },
+      },
+      function (error, result) {
+        if (result) {
+          console.log(result);
+          res.json({ ok: true });
+        } else {
+          console.error("Error processing transaction:", error);
+          res.status(500).send(error);
+        }
+      }
+    );
+  } catch (error) {
+    console.error("Error in payment controller:", error);
+    res.status(500).send(error);
+  }
+};
+
+export const receiptController = async (req, res) => {
+  try {
+    // Extract the guestId from the query parameters
+    const guestId = req.params.id;
+
+    // Find the guest in the database using the guestId
+    const guest = await GuestModels.findById(guestId);
+
+    // If the guest is not found, return a 404 error
+    if (!guest) {
+      return res.status(404).json({ error: "Guest not found" });
+    }
+
+    // If the guest is found, send the guest data as a JSON response
+    res.json(guest);
+  } catch (error) {
+    // Handle any errors that occur during the process
+    console.error("Error fetching guest data:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 };

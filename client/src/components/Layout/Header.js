@@ -4,7 +4,6 @@ import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
 
-
 const Header = () => {
   const [auth, setAuth] = useAuth();
 
@@ -17,30 +16,26 @@ const Header = () => {
     Cookies.remove("auth");
     toast.success("Logout Successfully");
   };
-  
-const role = auth?.user?.role;
 
-const handleRoute = () => {
-  if (role === 1) {
-    return '/dashboard/warden';
-  } else if (role === 3) {
-    return '/dashboard/manager';
-  } else if (role === 0) {
-    return '/dashboard/student';
-  } else if (role === 2) {
-    return '/dashboard/accountant';
-  } else {
-    // Handle any other cases or provide a default route
-    return '/dashboard'; // You can change this to your default route
-  }
-};
+  const role = auth?.user?.role;
 
-
+  const handleRoute = () => {
+    if (role === 1) {
+      return "/dashboard/warden";
+    } else if (role === 3) {
+      return "/dashboard/manager";
+    } else if (role === 0) {
+      return "/dashboard/student";
+    } else if (role === 2) {
+      return "/dashboard/accountant";
+    } else {
+      // Handle any other cases or provide a default route
+      return "/dashboard"; // You can change this to your default route
+    }
+  };
 
   return (
     <>
-
-   
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <button
@@ -67,6 +62,11 @@ const handleRoute = () => {
               {!auth?.user ? (
                 <>
                   <li className="nav-item">
+                    <NavLink to="/guest" className="nav-link">
+                      Guest
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
                     <NavLink to="/register" className="nav-link">
                       Register
                     </NavLink>
@@ -91,10 +91,7 @@ const handleRoute = () => {
                     </NavLink>
                     <ul className="dropdown-menu">
                       <li>
-                        <NavLink
-                          to={handleRoute()} 
-                          className="dropdown-item"
-                        >
+                        <NavLink to={handleRoute()} className="dropdown-item">
                           Dashboard
                         </NavLink>
                       </li>

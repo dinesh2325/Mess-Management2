@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import toast from "react-hot-toast";
 import { Modal } from "react-bootstrap";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import viewcomplain from "../Complain/viewcomplain.jpg";
 
 const Viewpayments = () => {
   const [Allpayment, setAllpayment] = useState([]);
@@ -77,129 +78,139 @@ const Viewpayments = () => {
   }, []);
 
   return (
-    <div>
-      <div
-        style={{
-          marginBottom: "20px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center", // Center the content horizontally
-          marginTop: "20px", // Add margin from the top
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Search by registration ID"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          onKeyDown={handleKeyDown}
+    <div
+      style={{
+        backgroundImage: `url(${viewcomplain})`,
+        backgroundSize: "cover",
+        minHeight: "100vh",
+        position: "absolute",
+      }}
+    >
+      <div>
+        <div
           style={{
-            padding: "8px",
-            marginRight: "8px",
-            borderRadius: "4px",
-            border: "1px solid #ccc",
-            width: "200px",
+            marginBottom: "20px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center", // Center the content horizontally
+            position: "relative", // Add margin from the top
+            top: "20px",
           }}
-        />
-        <Button
-          variant="primary"
-          onClick={handleSearch}
-          style={{ padding: "8px", borderRadius: "4px" }}
         >
-          Search
-        </Button>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          flexWrap: "wrap",
-        }}
-      >
-        {Allpayment.map((c, index) => (
-          <div
-            key={c.reg}
-            onMouseEnter={() => handleCardHover(index)}
-            onMouseLeave={handleCardLeave}
-            onClick={handleCardLeave}
+          <input
+            type="text"
+            placeholder="Search by registration ID"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
             style={{
-              width: "30%", // Adjust the width for three cards in a row
-              margin: "1.5%",
-              boxSizing: "border-box",
-              padding: "20px",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-              border: "2px solid #ccc",
-              borderRadius: "8px",
-              transition: "transform 0.3s ease-in-out",
-              transform: `scale(${hoveredCard === index ? 1.05 : 1})`,
-              height: "300px",
-              background:
-                "linear-gradient(120deg, bisque 60%, rgb(255, 231, 222) 88%, rgb(255, 211, 195) 40%, rgba(255, 127, 80, 0.603) 48%)",
-              color: "coral",
+              padding: "8px",
+              marginRight: "8px",
+              borderRadius: "4px",
+              border: "1px solid #ccc",
+              width: "200px",
             }}
+          />
+          <Button
+            variant="primary"
+            onClick={handleSearch}
+            style={{ padding: "8px", borderRadius: "4px" }}
           >
-            <div>
-              <h4 style={{ fontWeight: "bold" }}>Name: {c.name}</h4>
-              <h4 style={{ fontWeight: "bold" }}>Reg no.: {c.reg}</h4>
-              <h4 style={{ fontWeight: "bold" }}>
-                Description: {c.description}
-              </h4>
-              <img
-                src={`/api/v1/general/paymentReceipt/${c._id}`}
-                alt="Payment Image"
-                style={{
-                  maxWidth: "100%",
-                  height: "120px",
-                  borderRadius: "8px",
-                  cursor: "pointer",
-                }}
-                onClick={() => {
-                  setSelectedImage(`/api/v1/general/paymentReceipt/${c._id}`);
-                  setShowModal(true);
-                }}
-              />
-              {c.verify === "0" ? (
-                <button
-                  type="button"
-                  className="btn btn-success m-lg-5"
-                  style={{ background: "rgb(252, 69, 59) " }}
-                  onClick={() => handleApprove(c.student, c._id)}
-                >
-                  Verify
-                </button>
-              ) : (
-                <span
-                  style={{
-                    marginLeft: "50px",
-                    fontWeight: "bold",
-                    border: "2px solid #000",
-                    borderRadius: "4px",
-                    padding: "2px",
-                  }}
-                >
-                  <VerifiedIcon /> Verified
-                </span>
-              )}
-              <hr />
-            </div>
-            <Modal show={showModal} onHide={() => setShowModal(false)}>
-              <Modal.Header closeButton>
-                <Modal.Title>Payment Image</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
+            Search
+          </Button>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          {Allpayment.map((c, index) => (
+            <div
+              key={c.reg}
+              onMouseEnter={() => handleCardHover(index)}
+              onMouseLeave={handleCardLeave}
+              onClick={handleCardLeave}
+              style={{
+                width: "30%", // Adjust the width for three cards in a row
+                margin: "1.5%",
+                boxSizing: "border-box",
+                padding: "20px",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                border: "2px solid #ccc",
+                borderRadius: "8px",
+                transition: "transform 0.3s ease-in-out",
+                transform: `scale(${hoveredCard === index ? 1.05 : 1})`,
+                height: "300px",
+                background:
+                  "linear-gradient(120deg, bisque 60%, rgb(255, 231, 222) 88%, rgb(255, 211, 195) 40%, rgba(255, 127, 80, 0.603) 48%)",
+                color: "coral",
+              }}
+            >
+              <div>
+                <h4 style={{ fontWeight: "bold" }}>Name: {c.name}</h4>
+                <h4 style={{ fontWeight: "bold" }}>Reg no.: {c.reg}</h4>
+                <h4 style={{ fontWeight: "bold" }}>
+                  Description: {c.description}
+                </h4>
                 <img
-                  src={selectedImage}
+                  src={`/api/v1/general/paymentReceipt/${c._id}`}
                   alt="Payment Image"
                   style={{
-                    width: "100%",
-                    maxHeight: "500px",
-                    objectFit: "contain",
+                    maxWidth: "100%",
+                    height: "120px",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    setSelectedImage(`/api/v1/general/paymentReceipt/${c._id}`);
+                    setShowModal(true);
                   }}
                 />
-              </Modal.Body>
-            </Modal>
-          </div>
-        ))}
+                {c.verify === "0" ? (
+                  <button
+                    type="button"
+                    className="btn btn-success m-lg-5"
+                    style={{ background: "rgb(252, 69, 59) " }}
+                    onClick={() => handleApprove(c.student, c._id)}
+                  >
+                    Verify
+                  </button>
+                ) : (
+                  <span
+                    style={{
+                      marginLeft: "50px",
+                      fontWeight: "bold",
+                      border: "2px solid #000",
+                      borderRadius: "4px",
+                      padding: "2px",
+                    }}
+                  >
+                    <VerifiedIcon /> Verified
+                  </span>
+                )}
+                <hr />
+              </div>
+              <Modal show={showModal} onHide={() => setShowModal(false)}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Payment Image</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <img
+                    src={selectedImage}
+                    alt="Payment Image"
+                    style={{
+                      width: "100%",
+                      maxHeight: "500px",
+                      objectFit: "contain",
+                    }}
+                  />
+                </Modal.Body>
+              </Modal>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

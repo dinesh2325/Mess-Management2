@@ -63,7 +63,7 @@ const Receipt = () => {
   return (
     <>
       {guestData ? (
-        <div className="wrapper">
+        <div className="wrapper2">
           <div className="receipt-box">
             <div className="actual-receipt">
               <h5>Motilal Nehru National Institute of Technology</h5>
@@ -140,10 +140,18 @@ const Receipt = () => {
         <p>Loading...</p>
       )}
       <br />
-
-      <Button variant="outlined" color="error" onClick={downloadPDF}>
-        Download Receipt
-      </Button>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignContent: "center",
+          marginBottom: "20px",
+        }}
+      >
+        <Button variant="contained" onClick={downloadPDF}>
+          Download Receipt
+        </Button>
+      </div>
     </>
   );
 };

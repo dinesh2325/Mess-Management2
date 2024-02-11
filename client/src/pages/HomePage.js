@@ -8,11 +8,11 @@ const HomePage = () => {
   const [auth, setAuth] = useAuth();
   return (
     <Layout>
-      <Link to="/guest">
+      {/* <Link to="/guest">
         <Button variant="outlined" color="error">
           Guest
         </Button>
-      </Link>
+      </Link> */}
     </Layout>
   );
 };

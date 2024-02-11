@@ -25,7 +25,7 @@ const Expenses = () => {
         spoon,
         plates,
         glass,
-        description
+        description,
       });
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
@@ -85,9 +85,7 @@ const Expenses = () => {
               autoFocus
             />
           </div>
-          
           Utensils Information:
-         
           <div className="mb-3">
             <input
               type="text"
@@ -125,17 +123,15 @@ const Expenses = () => {
             />
           </div>
           <div className="mb-3">
-          <label >Enter Note:</label>
-      <input
-        type="text"
-        id="userInput"
-        name="userInput"
-        value={description}
-        onChange={handleInputChange}
-      />
-      </div>
-
-          
+            <label>Enter Note:</label>
+            <input
+              type="text"
+              id="userInput"
+              name="userInput"
+              value={description}
+              onChange={handleInputChange}
+            />
+          </div>
           <button type="submit" className="btn btn-primary">
             Submit
           </button>

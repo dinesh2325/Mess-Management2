@@ -1,13 +1,14 @@
-*{
+/* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+  } */
   
-  .wrapper{
+  .wrapper2{
     width: 100%;
     height: auto;
     display: flex;
+    margin: 0px auto;
     justify-content: center;
     align-items: center;
     overflow-x: hidden;

@@ -4,7 +4,6 @@ import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
 
-
 const Header = () => {
   const [auth, setAuth] = useAuth();
 
@@ -17,30 +16,26 @@ const Header = () => {
     Cookies.remove("auth");
     toast.success("Logout Successfully");
   };
-  
-const role = auth?.user?.role;
 
-const handleRoute = () => {
-  if (role === 1) {
-    return '/dashboard/warden';
-  } else if (role === 3) {
-    return '/dashboard/manager';
-  } else if (role === 0) {
-    return '/dashboard/student';
-  } else if (role === 2) {
-    return '/dashboard/accountant';
-  } else {
-    // Handle any other cases or provide a default route
-    return '/dashboard'; // You can change this to your default route
-  }
-};
+  const role = auth?.user?.role;
 
-
+  const handleRoute = () => {
+    if (role === 1) {
+      return "/dashboard/warden";
+    } else if (role === 3) {
+      return "/dashboard/manager";
+    } else if (role === 0) {
+      return "/dashboard/student";
+    } else if (role === 2) {
+      return "/dashboard/accountant";
+    } else {
+      // Handle any other cases or provide a default route
+      return "/dashboard"; // You can change this to your default route
+    }
+  };
 
   return (
     <>
-
-   
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <button
@@ -60,7 +55,11 @@ const handleRoute = () => {
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink to="/" className="nav-link ">
+                <NavLink
+                  to="/"
+                  className="nav-link "
+                  style={{ marginRight: "60px" }}
+                >
                   Home
                 </NavLink>
               </li>
@@ -82,6 +81,7 @@ const handleRoute = () => {
                   <li className="nav-item dropdown">
                     <NavLink
                       className="nav-link dropdown-toggle"
+                      style={{ marginRight: "50px" }}
                       href="#"
                       role="button"
                       data-bs-toggle="dropdown"
@@ -91,10 +91,7 @@ const handleRoute = () => {
                     </NavLink>
                     <ul className="dropdown-menu">
                       <li>
-                        <NavLink
-                          to={handleRoute()} 
-                          className="dropdown-item"
-                        >
+                        <NavLink to={handleRoute()} className="dropdown-item">
                           Dashboard
                         </NavLink>
                       </li>

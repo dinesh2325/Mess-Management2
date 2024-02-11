@@ -1,0 +1,60 @@
+.notice-container {
+  margin: 50px auto;
+  width: 90%; /* Increase width for more space */
+  overflow: hidden; /* Hide overflowing content */
+}
+
+.notice-list {
+  display: flex;
+  gap: 20px;
+  animation: scrollNotice 25s linear infinite; /* Animation for scrolling */
+}
+
+.notice-container:hover .notice-list {
+  animation-play-state: paused; /* Pause animation on hover */
+}
+
+@keyframes scrollNotice {
+  0% {
+    transform: translateX(100%); /* Start off the container */
+  }
+  100% {
+    transform: translateX(calc(-100% + 300px)); /* Scroll to the left, consider notice item width */
+  }
+}
+
+.notice-item {
+  min-width: 280px; /* Decrease width of notice items to fit more */
+  max-width: 300px; /* Ensure each notice item has a maximum width */
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.notice-item h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.notice-item p {
+  margin-bottom: 10px;
+}
+
+.notice-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.notice-item button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.notice-item button:hover {
+  background-color: #0056b3;
+}

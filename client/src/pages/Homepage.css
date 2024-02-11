@@ -1,0 +1,51 @@
+.notice-container {
+    margin: 100px auto; /* Center the container horizontally with a top margin */
+    overflow: hidden;
+    max-height: none; /* Remove the maximum height */
+    height: auto; /* Let the container's height adjust to its content */
+    position: relative;
+    width: 90%; 
+  }
+  
+  .notices {
+    position:absolute ;
+    top: 50%; /* Start at the middle of the container */
+    left: 0;
+    transform: translateY(-50%); /* Center the notices vertically */
+    animation: scrollNotice 8s linear infinite;
+  }
+  
+  .notices.paused {
+    animation-play-state: paused; /* Pause animation on hover */
+  }
+  
+  .notice-container:hover .notices {
+    top: 50%; /* Keep the notices centered on hover */
+    transform: translateY(-50%);
+  }
+  
+  @keyframes scrollNotice {
+    0% {
+      top: 100%; /* Start off the container */
+    }
+    100% {
+      top: -100%; /* Scroll to the top */
+    }
+  }
+   
+
+
+  /* codo for css of footer marquee */
+  
+ /* styles.css */
+@keyframes marquee {
+  0% {
+    transform: translateX(-60%);
+  }
+  50% {
+    transform: translateX(60%);
+  }
+  100% {
+    transform: translateX(-60%);
+  }
+}

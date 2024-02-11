@@ -83,7 +83,7 @@ const Viewpayments = () => {
         backgroundImage: `url(${viewcomplain})`,
         backgroundSize: "cover",
         minHeight: "100vh",
-        position: "absolute",
+        // position: "absolute",
       }}
     >
       <div>

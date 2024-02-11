@@ -23,6 +23,9 @@ import {
   searchpaymentController,
   expensesController,
   viewAllexpensesController,
+  createNoticeController,
+  showAllNoticesController,
+  getNoticePdfController,
   updatephotoController,
   displayphotoController,
   createGuestController,
@@ -39,6 +42,8 @@ import {
 } from "../controllers/generalController.js";
 
 import formidable from "express-formidable";
+import { isWarden, requireSignIn } from "../middlewares/authMiddleware.js";
+import upload from "../multerconfig.js";
 
 const router = express.Router();
 
@@ -96,6 +101,20 @@ router.put("/verifypayment", verifypaymentController);
 //for searching a student payment status
 router.get("/searchgetpayment", searchpaymentController);
 
+//createnotice
+router.post(
+  "/createnotice",
+  // requireSignIn,
+  // isWarden,
+  upload.single("pdf"),
+  createNoticeController
+);
+
+//show all notices
+router.get("/allnotices", showAllNoticesController);
+
+//show pdf
+router.get("/downloadpdf/:noticeId", getNoticePdfController);
 //update photo
 router.put("/updatephoto/:userId", updatephotoController);
 //get photo

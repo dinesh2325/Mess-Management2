@@ -59,19 +59,21 @@ const Viewfeedback = () => {
     // eslint-disable-next-line
   }, []);
 
-  // Calculate the average food rating in percentage
-  const averageFoodRatingPercentage =
-    (totalFoodRating / totalFeedback / 5.0) * 100;
+  // Calculate the average food rating in percentage and round to two decimal places
+  let averageFoodRatingPercentage =
+    Math.round((totalFoodRating / totalFeedback / 5.0) * 100 * 100) / 100;
 
-  // Calculate the remaining food rating percentage
-  const remainingFoodRatingPercentage = 100 - averageFoodRatingPercentage;
+  // Calculate the remaining food rating percentage and round to two decimal places
+  let remainingFoodRatingPercentage =
+    Math.round((100 - averageFoodRatingPercentage) * 100) / 100;
 
-  // Calculate the average service rating in percentage
-  const averageServiceRatingPercentage =
-    (totalServiceRating / totalFeedback / 5.0) * 100;
+  // Calculate the average service rating in percentage and round to two decimal places
+  let averageServiceRatingPercentage =
+    Math.round((totalServiceRating / totalFeedback / 5.0) * 100 * 100) / 100;
 
-  // Calculate the remaining service rating percentage
-  const remainingServiceRatingPercentage = 100 - averageServiceRatingPercentage;
+  // Calculate the remaining service rating percentage and round to two decimal places
+  let remainingServiceRatingPercentage =
+    Math.round((100 - averageServiceRatingPercentage) * 100) / 100;
 
   const lightBlueShades = [
     "#336BFF",

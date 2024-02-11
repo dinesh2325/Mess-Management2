@@ -82,7 +82,7 @@ const Profile = () => {
         }
       );
       console.log("Profile data saved:", response.data);
-      window.alert("profile updated successfully");
+      window.alert("Profile updated successfully!!!");
     } catch (error) {
       window.alert("Profile is not updated");
       console.error("Error saving profile data:", error);
@@ -99,8 +99,8 @@ const Profile = () => {
         axios
           .put(`/api/v1/general/updatePhoto/${singleUser._id}`, { base64Image })
           .then((response) => {
-            console.log("Photo updated successfully:", response.data);
-            window.alert("Photo updated successfully");
+            console.log("Photo updated successfully", response.data);
+            window.alert("Photo updated successfully!!!,Refresh your page...");
           })
           .catch((error) => {
             console.error("Error updating photo:", error);

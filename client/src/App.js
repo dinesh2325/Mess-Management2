@@ -33,10 +33,11 @@ import Expenses from "./pages/expenses/Expenses";
 import Viewexpenses from "./pages/expenses/viewexpenses";
 
 import Viewpayments from "./pages/payment/viewpayments";
-import Createnotice from "./pages/Admin/Notice/Createnotice";
+
 import Guest from "./pages/Guest/Guest";
 import GuestPayment from "./pages/Guest/GuestPayment";
 import Receipt from "./pages/Guest/Receipt";
+import CreateNotice from "./pages/Notice/Createnotice";
 
 function App() {
   return (
@@ -58,6 +59,12 @@ function App() {
         <Route path="/dashboard/student/feedback" element={<Feedback />} />
 
         <Route path="/dashboard/warden/viewcomplain" element={<View />} />
+
+        <Route
+          path="/dashboard/warden/createnotice"
+          element={<CreateNotice />}
+        ></Route>
+
         <Route
           path="/dashboard/warden/viewfeedback"
           element={<Viewfeedback />}
@@ -119,10 +126,7 @@ function App() {
           element={<Viewpayments />}
         ></Route>
         <Route path="/dashboard/warden/viewuser" element={<Viewuser />}></Route>
-        <Route
-          path="/dashboard/warden/createnotice"
-          element={<Createnotice />}
-        ></Route>
+
         <Route
           path="/reset_password/:id/:token"
           element={<ResetPassword />}

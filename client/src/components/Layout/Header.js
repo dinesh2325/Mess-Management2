@@ -49,7 +49,11 @@ const Header = () => {
           >
             <span className="navbar-toggler-icon" />
           </button>
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <div
+            className="collapse navbar-collapse"
+            id="navbarTogglerDemo01"
+            style={{ marginRight: "40px" }}
+          >
             <Link to="/" className="navbar-brand">
               MESS MANAGEMENT APP
             </Link>
@@ -58,13 +62,18 @@ const Header = () => {
                 <NavLink
                   to="/"
                   className="nav-link "
-                  style={{ marginRight: "60px" }}
+                  // style={{ marginRight: "60px" }}
                 >
                   Home
                 </NavLink>
               </li>
               {!auth?.user ? (
                 <>
+                  <li className="nav-item">
+                    <NavLink to="/guest" className="nav-link">
+                      Guest
+                    </NavLink>
+                  </li>
                   <li className="nav-item">
                     <NavLink to="/register" className="nav-link">
                       Register
@@ -78,34 +87,35 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <li className="nav-item dropdown">
-                    <NavLink
-                      className="nav-link dropdown-toggle"
-                      style={{ marginRight: "50px" }}
-                      href="#"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      {auth?.user?.name}
-                    </NavLink>
-                    <ul className="dropdown-menu">
-                      <li>
-                        <NavLink to={handleRoute()} className="dropdown-item">
-                          Dashboard
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          onClick={handleLogout}
-                          to="/login"
-                          className="dropdown-item"
-                        >
-                          Logout
-                        </NavLink>
-                      </li>
-                    </ul>
-                  </li>
+                  <div>
+                    <li className="nav-item dropdown">
+                      <NavLink
+                        className="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        {auth?.user?.name}
+                      </NavLink>
+                      <ul className="dropdown-menu">
+                        <li>
+                          <NavLink to={handleRoute()} className="dropdown-item">
+                            Dashboard
+                          </NavLink>
+                        </li>
+                        <li>
+                          <NavLink
+                            onClick={handleLogout}
+                            to="/login"
+                            className="dropdown-item"
+                          >
+                            Logout
+                          </NavLink>
+                        </li>
+                      </ul>
+                    </li>
+                  </div>
                 </>
               )}
             </ul>

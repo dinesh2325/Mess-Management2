@@ -3,29 +3,8 @@ import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
-// const AnimatedForm = () => {
-//   const [name, setName] = useState('');
-//   const [reg, setReg] = useState('');
-//   const [complain, setComplain] = useState('');
-
-//   const navigate= useNavigate();
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const res = await axios.post("/api/v1/general/complain", {
-//         name,
-//         reg,
-//         complain
-//       });
-
-//       navigate("/dashboard/viewcomplain");
-//     } catch (error) {
-//       console.log(error);
-//       toast.error("Something went wrong");
-//     }
-
-//   };
+import backgroundImage from "./complain.jpeg";
+import "./complain.css";
 
 const AnimatedForm = () => {
   const [auth, setAuth] = useAuth();
@@ -52,14 +31,25 @@ const AnimatedForm = () => {
   };
 
   return (
-    <div className="form-container">
-      <form>
+    <div
+      className="form-container"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <form style={{ height: "300px" }}>
         <div className="form-group">
+          <label htmlFor="name">Name : </label>
           <input type="text" id="name" placeholder=" " value={name} />
-          <label htmlFor="name">Name</label>
         </div>
 
         <div className="form-group">
+          <label htmlFor="reg">Reg No. : </label>
           <input
             type="text"
             id="reg"
@@ -67,10 +57,10 @@ const AnimatedForm = () => {
             value={reg}
             onChange={(e) => setReg(e.target.value)}
           />
-          <label htmlFor="reg">Registration No.</label>
         </div>
 
         <div className="form-group">
+          <label htmlFor="complain">Complain : </label>
           <input
             type="text"
             id="complain"
@@ -78,7 +68,6 @@ const AnimatedForm = () => {
             value={complain}
             onChange={(e) => setComplain(e.target.value)}
           />
-          <label htmlFor="complain">Complain</label>
         </div>
 
         <button type="submit" className="submit-btn" onClick={handleSubmit}>

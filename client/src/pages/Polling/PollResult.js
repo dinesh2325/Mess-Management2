@@ -1,106 +1,9 @@
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-// import { useNavigate, useParams } from "react-router-dom";
-// import toast from "react-hot-toast";
-
-// const PollResult = () => {
-//   const navigate = useNavigate();
-//   const [question, setQuestion] = useState("");
-//   const [options, setOptions] = useState([{ id: "", options: "", count: "" }]);
-//   const [pollId, setPollId] = useState("");
-
-//   useEffect(() => {
-//     // Fetch existing poll data if pollId is provided
-//     const fetchPollData = async () => {
-//       try {
-//         const response = await axios.get("/api/v1/general/getPoll");
-//         const pollData = response.data; // Assuming your backend provides poll data
-//         setQuestion(pollData.question);
-//         setOptions(pollData.options);
-//         setPollId(pollData._id); // Set the pollId state
-//         console.log(pollData);
-//       } catch (error) {
-//         console.error("Error fetching poll data:", error);
-//         // Handle errors here
-//       }
-//     };
-//     fetchPollData();
-//   }, []);
-
-//   const handleSubmit = async () => {
-//     try {
-//       const res = await axios.delete(`/api/v1/general/deletepoll/${pollId}`);
-//       navigate("/dashboard/warden");
-//     } catch (error) {
-//       console.error("Error deleting poll:", error);
-//       // Handle errors here
-//     }
-//   };
-
-//   return (
-//     <div style={{ textAlign: "center", maxWidth: "400px", margin: "auto" }}>
-//       {pollId ? (
-//         <form
-//           // onSubmit={handleSubmit}
-//           style={{
-//             backgroundColor: "#fff",
-//             borderRadius: "8px",
-//             padding: "20px",
-//             boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-//           }}
-//         >
-//           <label
-//             htmlFor="question"
-//             style={{ display: "block", marginBottom: "8px" }}
-//           >
-//             Poll Question:
-//           </label>
-//           <p>{question}</p>
-//           <hr />
-//           <label
-//             htmlFor="options"
-//             style={{ display: "block", marginBottom: "8px" }}
-//           >
-//             Options:
-//           </label>
-//           {options.map((option, index) => (
-//             <div key={option.id} style={{ marginBottom: "16px" }}>
-//               <label htmlFor={`option-${index}`}>
-//                 {option.options}:{option.count}
-//               </label>
-//             </div>
-//           ))}
-
-//           <button
-//             type="button"
-//             onClick={handleSubmit}
-//             style={{
-//               backgroundColor: "#4caf50",
-//               color: "#fff",
-//               padding: "10px",
-//               border: "none",
-//               borderRadius: "4px",
-//               cursor: "pointer",
-//             }}
-//           >
-//             Delete Poll
-//           </button>
-//         </form>
-//       ) : (
-//         <p>No poll available</p>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default PollResult;
-
-//2.....
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Button from "@mui/material/Button";
+import pollback from "./pollback.jpg";
 import {
   BarChart,
   Bar,
@@ -170,101 +73,109 @@ const PollResult = () => {
   }));
 
   return (
-    <div>
-      <h1 style={{ textAlign: "center", fontWeight: "bold" }}>
-        Poll Result Visualization
-      </h1>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignContent: "center",
-          marginTop: 10,
-        }}
-      >
-        <h3>Question: {question}</h3>
-      </div>
-
-      {pollId ? (
+    <div
+      style={{
+        backgroundImage: `url(${pollback})`,
+        backgroundSize: "cover",
+        minHeight: "100vh",
+      }}
+    >
+      <div>
+        <h1 style={{ textAlign: "center", fontWeight: "bold" }}>
+          Poll Result Visualization
+        </h1>
         <div
           style={{
             display: "flex",
             justifyContent: "center",
-            marginTop: 20,
-            flexWrap: "wrap",
+            alignContent: "center",
+            marginTop: 10,
           }}
         >
-          <div
-            style={{
-              border: "1px solid #ccc",
-              borderRadius: "8px",
-              padding: "20px",
-              margin: "10px",
-              minWidth: "300px",
-              maxWidth: "400px",
-              width: "100%",
-            }}
-          >
-            <h2 style={{ textAlign: "center" }}>Bar Chart</h2>
-            <BarChart
-              width={300}
-              height={300}
-              data={barChartData}
-              margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="count" fill="#8884d8" />
-            </BarChart>
-          </div>
-
-          <div
-            style={{
-              border: "1px solid #ccc",
-              borderRadius: "8px",
-              padding: "20px",
-              margin: "10px",
-              minWidth: "300px",
-              maxWidth: "400px",
-              width: "100%",
-            }}
-          >
-            <h2 style={{ textAlign: "center" }}>Pie Chart</h2>
-            <PieChart width={300} height={300}>
-              <Pie
-                data={pieChartData}
-                cx="50%"
-                cy="50%"
-                outerRadius={80}
-                fill="#8884d8"
-                label
-              >
-                {pieChartData.map((entry, index) => (
-                  <Cell key={index} fill={entry.color} />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
-          </div>
+          <h3>Question: {question}</h3>
         </div>
-      ) : (
-        <p>No poll available</p>
-      )}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignContent: "center",
-          margintop: 50,
-        }}
-      >
-        <Button onClick={handleSubmit} variant="contained">
-          Delete
-        </Button>
+
+        {pollId ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: 20,
+              flexWrap: "wrap",
+            }}
+          >
+            <div
+              style={{
+                border: "1px solid #ccc",
+                borderRadius: "8px",
+                padding: "20px",
+                margin: "10px",
+                minWidth: "300px",
+                maxWidth: "400px",
+                width: "100%",
+              }}
+            >
+              <h2 style={{ textAlign: "center" }}>Bar Chart</h2>
+              <BarChart
+                width={300}
+                height={300}
+                data={barChartData}
+                margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="count" fill="#8884d8" />
+              </BarChart>
+            </div>
+
+            <div
+              style={{
+                border: "1px solid #ccc",
+                borderRadius: "8px",
+                padding: "20px",
+                margin: "10px",
+                minWidth: "300px",
+                maxWidth: "400px",
+                width: "100%",
+              }}
+            >
+              <h2 style={{ textAlign: "center" }}>Pie Chart</h2>
+              <PieChart width={300} height={300}>
+                <Pie
+                  data={pieChartData}
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={80}
+                  fill="#8884d8"
+                  label
+                >
+                  {pieChartData.map((entry, index) => (
+                    <Cell key={index} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip />
+                <Legend />
+              </PieChart>
+            </div>
+          </div>
+        ) : (
+          <p>No poll available</p>
+        )}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "center",
+            margintop: 50,
+          }}
+        >
+          <Button onClick={handleSubmit} variant="contained">
+            Delete
+          </Button>
+        </div>
       </div>
     </div>
   );

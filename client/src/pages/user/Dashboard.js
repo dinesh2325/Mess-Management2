@@ -1,371 +1,157 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Layout from "../../components/Layout/Layout";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import "./Dashboard.css"
-import View from './../Complain/viewComplain';
-import Feedback from './../feedback/feedback';
-import Nutrition from './../Nutrition/nutrition';
+import "./Dashboard.css";
+import View from "./../Complain/viewComplain";
+import Feedback from "./../feedback/feedback";
+import Nutrition from "./../Nutrition/nutrition";
 const Dashboard = () => {
   return (
     <Layout>
-      {/* <h1 style={{ textAlign: "center" }}>User Panel</h1>
       <div
         style={{
-          backgroundColor: "#f4f4f4",
-          border: "1px solid #ddd",
-          borderRadius: "10px",
-          padding: "20px 30px",
-          margin: "0 30px",
-          textAlign: "center", // Center-align the content within the card
+          background: "#F9F6EE",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap", // Allow items to wrap to the next line
-            justifyContent: "space-around",
-            margin: "5px 0",
-          }}
-        > */}
-          {/* <div style={{ width: "30%", marginBottom: "10px" }}>
-            <NavLink
-              to="/dashboard/student/complain"
-              style={{ textDecoration: "none" }}
-            >
-              <button
-                type="button"
-                className="btn btn-outline-primary"
-                style={{
-                  width: "100%", // Set the button width to 100%
-                  padding: "10px 20px", // Adjusted padding for a smaller button
-                  boxSizing: "border-box", // Ensure padding is included in the total width
-                }}
+        <div className="ag-format-container">
+          <div className="ag-courses_box">
+            {/* card 1 */}
+            <div className="ag-courses_item">
+              <Link
+                to="/dashboard/student/complain"
+                className="ag-courses-item_link"
               >
-                Complain
-              </button>
-            </NavLink>
-          </div> */}
-          {/* <div style={{ width: "30%", marginBottom: "10px" }}>
-            <NavLink
-              to="/dashboard/student/viewcomplain"
-              style={{ textDecoration: "none" }}
-            >
-              <button
-                type="button"
-                className="btn btn-outline-primary"
-                style={{
-                  width: "100%", // Set the button width to 100%
-                  padding: "10px 20px", // Adjusted padding for a smaller button
-                  boxSizing: "border-box", // Ensure padding is included in the total width
-                }}
+                <div className="ag-courses-item_bg" />
+                <div className="ag-courses-item_title">Complain...</div>
+                <div className="ag-courses-item_date-box">
+                  <span className="ag-courses-item_date">
+                    Register Your Complain Here!!!
+                  </span>
+                </div>
+              </Link>
+            </div>
+
+            {/* card2 */}
+
+            <div className="ag-courses_item">
+              <Link
+                to="/dashboard/student/viewcomplain"
+                className="ag-courses-item_link"
               >
-                View Complain
-              </button>
-            </NavLink>
-          </div>
-          <div style={{ width: "30%", marginBottom: "10px" }}>
-            <NavLink
-              to="/dashboard/student/getmenu"
-              style={{ textDecoration: "none" }}
-            >
-              <button
-                type="button"
-                className="btn btn-outline-primary"
-                style={{
-                  width: "100%", // Set the button width to 100%
-                  padding: "10px 20px", // Adjusted padding for a smaller button
-                  boxSizing: "border-box", // Ensure padding is included in the total width
-                }}
+                <div className="ag-courses-item_bg" />
+                <div className="ag-courses-item_title">View Complain...</div>
+                <div className="ag-courses-item_date-box">
+                  <span className="ag-courses-item_date">
+                    View All Complains Here!!!
+                  </span>
+                </div>
+              </Link>
+            </div>
+
+            {/* card 3 */}
+
+            <div className="ag-courses_item">
+              <Link
+                to="/dashboard/student/getmenu"
+                className="ag-courses-item_link"
               >
-                Mess Menu
-              </button>
-            </NavLink>
-          </div>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap", // Allow items to wrap to the next line
-            justifyContent: "space-around",
-            margin: "5px 0",
-          }}
-        >
-          <div style={{ width: "30%", marginBottom: "10px" }}>
-            <NavLink
-              to="/dashboard/student/viewpoll"
-              style={{ textDecoration: "none" }}
-            >
-              <button
-                type="button"
-                className="btn btn-outline-primary"
-                style={{
-                  width: "100%", // Set the button width to 100%
-                  padding: "10px 20px", // Adjusted padding for a smaller button
-                  boxSizing: "border-box", // Ensure padding is included in the total width
-                }}
+                <div className="ag-courses-item_bg" />
+                <div className="ag-courses-item_title">Mess Menu...</div>
+                <div className="ag-courses-item_date-box">
+                  <span className="ag-courses-item_date">
+                    View Your Daily Meals Here!!!
+                  </span>
+                </div>
+              </Link>
+            </div>
+
+            {/* card 4 */}
+            <div className="ag-courses_item">
+              <Link
+                to="/dashboard/student/viewpoll"
+                className="ag-courses-item_link"
               >
-                View Poll
-              </button>
-            </NavLink>
-          </div>
-          <div style={{ width: "30%", marginBottom: "10px" }}>
-            <NavLink
-              to="/dashboard/student/feedback"
-              style={{ textDecoration: "none" }}
-            >
-              <button
-                type="button"
-                className="btn btn-outline-primary"
-                style={{
-                  width: "100%", // Set the button width to 100%
-                  padding: "10px 20px", // Adjusted padding for a smaller button
-                  boxSizing: "border-box", // Ensure padding is included in the total width
-                }}
+                <div className="ag-courses-item_bg" />
+                <div className="ag-courses-item_title">Poll...</div>
+                <div className="ag-courses-item_date-box">
+                  <span className="ag-courses-item_date">Poll Here!!!</span>
+                </div>
+              </Link>
+            </div>
+
+            {/* card 5 */}
+
+            <div className="ag-courses_item">
+              <Link
+                to="/dashboard/student/feedback"
+                className="ag-courses-item_link"
               >
-                Feedback
-              </button>
-            </NavLink>
-          </div>
-          <div style={{ width: "30%", marginBottom: "10px" }}>
-            <NavLink
-              to="/dashboard/student/nutrition"
-              style={{ textDecoration: "none" }}
-            >
-              <button
-                type="button"
-                className="btn btn-outline-primary"
-                style={{
-                  width: "100%", // Set the button width to 100%
-                  padding: "10px 20px", // Adjusted padding for a smaller button
-                  boxSizing: "border-box", // Ensure padding is included in the total width
-                }}
+                <div className="ag-courses-item_bg" />
+                <div className="ag-courses-item_title">Feedback...</div>
+                <div className="ag-courses-item_date-box">
+                  <span className="ag-courses-item_date">
+                    Give your feedback Here!!!
+                  </span>
+                </div>
+              </Link>
+            </div>
+
+            {/* card 6 */}
+
+            <div className="ag-courses_item">
+              <Link
+                to="/dashboard/student/nutrition"
+                className="ag-courses-item_link"
               >
-                Nutrition
-              </button>
-            </NavLink>
-          </div>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap", // Allow items to wrap to the next line
-            justifyContent: "space-around",
-            margin: "5px 0",
-          }}
-        >
-          <div style={{ width: "30%", marginBottom: "10px" }}>
-            <NavLink
-              to="/dashboard/student/tracker"
-              style={{ textDecoration: "none" }}
-            >
-              <button
-                type="button"
-                className="btn btn-outline-primary"
-                style={{
-                  width: "100%", // Set the button width to 100%
-                  padding: "10px 20px", // Adjusted padding for a smaller button
-                  boxSizing: "border-box", // Ensure padding is included in the total width
-                }}
+                <div className="ag-courses-item_bg" />
+                <div className="ag-courses-item_title">Nutrition...</div>
+                <div className="ag-courses-item_date-box">
+                  <span className="ag-courses-item_date">
+                    Check food Nutrition Here!!!
+                  </span>
+                </div>
+              </Link>
+            </div>
+
+            {/* card 7 */}
+
+            <div className="ag-courses_item">
+              <Link
+                to="/dashboard/student/tracker"
+                className="ag-courses-item_link"
               >
-                Tracker
-              </button>
-            </NavLink>
-          </div>
-          <div style={{ width: "30%", marginBottom: "10px" }}>
-            <NavLink
-              to="/dashboard/student/profile"
-              style={{ textDecoration: "none" }}
-            >
-              <button
-                type="button"
-                className="btn btn-outline-primary"
-                style={{
-                  width: "100%", // Set the button width to 100%
-                  padding: "10px 20px", // Adjusted padding for a smaller button
-                  boxSizing: "border-box", // Ensure padding is included in the total width
-                }}
+                <div className="ag-courses-item_bg" />
+                <div className="ag-courses-item_title">BMI Tracker...</div>
+                <div className="ag-courses-item_date-box">
+                  <span className="ag-courses-item_date">
+                    Map your Health Here!!!
+                  </span>
+                </div>
+              </Link>
+            </div>
+
+            {/* card 8*/}
+
+            <div className="ag-courses_item">
+              <Link
+                to="/dashboard/student/profile"
+                className="ag-courses-item_link"
               >
-                Profile
-              </button>
-            </NavLink>
+                <div className="ag-courses-item_bg" />
+                <div className="ag-courses-item_title">Profile...</div>
+                <div className="ag-courses-item_date-box">
+                  <span className="ag-courses-item_date">
+                    View your Profile Here!!!
+                  </span>
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
- 
-
- */}
-
-
-
-
-
-   
-<div className="ag-format-container">
-
-  <div className="ag-courses_box">
-  
-{/* card 1 */}
-  <div className="ag-courses_item">
-  <Link to="/dashboard/student/complain" className="ag-courses-item_link">
-    <div className="ag-courses-item_bg" />
-    <div className="ag-courses-item_title">
-      Complain...
-    </div>
-    <div className="ag-courses-item_date-box">
-     
-      <span className="ag-courses-item_date">
-      Register Your Complain Here!!!
-      </span>
-    </div>
-  </Link>
-</div>
-
-
-
-{/* card2 */}
-
-<div className="ag-courses_item">
-  <Link to="/dashboard/student/viewcomplain" className="ag-courses-item_link">
-    <div className="ag-courses-item_bg" />
-    <div className="ag-courses-item_title">
-      View Complain...
-    </div>
-    <div className="ag-courses-item_date-box">
-     
-      <span className="ag-courses-item_date">
-      View All Complains Here!!!
-      </span>
-    </div>
-  </Link>
-</div>
-
-   
-    {/* card 3 */}
-
-    <div className="ag-courses_item">
-  <Link to="/dashboard/student/getmenu" className="ag-courses-item_link">
-    <div className="ag-courses-item_bg" />
-    <div className="ag-courses-item_title">
-      Mess Menu...
-    </div>
-    <div className="ag-courses-item_date-box">
-     
-      <span className="ag-courses-item_date">
-      View Your Daily Meals Here!!!
-      </span>
-    </div>
-  </Link>
-</div>
-
-
-
-
-    {/* card 4 */}
-    <div className="ag-courses_item">
-  <Link to="/dashboard/student/viewpoll" className="ag-courses-item_link">
-    <div className="ag-courses-item_bg" />
-    <div className="ag-courses-item_title">
-      Poll...
-    </div>
-    <div className="ag-courses-item_date-box">
-     
-      <span className="ag-courses-item_date">
-     Poll Here!!!
-      </span>
-    </div>
-  </Link>
-</div>
-
-
-    {/* card 5 */}
-
-    <div className="ag-courses_item">
-  <Link to="/dashboard/student/feedback" className="ag-courses-item_link">
-    <div className="ag-courses-item_bg" />
-    <div className="ag-courses-item_title">
-     Feedback...
-    </div>
-    <div className="ag-courses-item_date-box">
-     
-      <span className="ag-courses-item_date">
-      Give your feedback Here!!!
-      </span>
-    </div>
-  </Link>
-</div>
-
-    {/* card 6 */}
-
-    <div className="ag-courses_item">
-  <Link to="/dashboard/student/nutrition" className="ag-courses-item_link">
-    <div className="ag-courses-item_bg" />
-    <div className="ag-courses-item_title">
-      Nutrition...
-    </div>
-    <div className="ag-courses-item_date-box">
-     
-      <span className="ag-courses-item_date">
-      Check food Nutrition Here!!!
-      </span>
-    </div>
-  </Link>
-</div>
-
-  {/* card 7 */}
-
-  <div className="ag-courses_item">
-  <Link to="/dashboard/student/tracker" className="ag-courses-item_link">
-    <div className="ag-courses-item_bg" />
-    <div className="ag-courses-item_title">
-      BMI Tracker...
-    </div>
-    <div className="ag-courses-item_date-box">
-     
-      <span className="ag-courses-item_date">
-      Map your Health Here!!!
-      </span>
-    </div>
-  </Link>
-</div>
-
-
- {/* card 8*/}
-
- <div className="ag-courses_item">
-  <Link to="/dashboard/student/profile" className="ag-courses-item_link">
-    <div className="ag-courses-item_bg" />
-    <div className="ag-courses-item_title">
-      Profile...
-    </div>
-    <div className="ag-courses-item_date-box">
-     
-      <span className="ag-courses-item_date">
-      View your Profile Here!!!
-      </span>
-    </div>
-  </Link>
-</div>
-
-
-</div>
-
-</div>
-    
-   
     </Layout>
   );
 };
 export default Dashboard;
-
-
-
-
-  
-   
-  
-
-
-

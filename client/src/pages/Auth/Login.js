@@ -73,7 +73,7 @@ const Login = () => {
   return (
     <>
       <Layout>
-        <div className="form-container" style={{ minHeight: "90vh" }}>
+        <div className="form2-container">
           <form onSubmit={handleSubmit}>
             <h4 className="title">LOGIN FORM</h4>
 
@@ -82,7 +82,7 @@ const Login = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="form-control"
+                className="form2-control"
                 id="exampleInputEmail1"
                 placeholder="Enter Your Email "
                 required
@@ -93,7 +93,7 @@ const Login = () => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="form-control"
+                className="form2-control"
                 id="exampleInputPassword1"
                 placeholder="Enter Your Password"
                 required
@@ -121,50 +121,18 @@ const Login = () => {
               </FormControl>
             </div>
 
-
-
-
-
-
-
-
-            
-
-            {/* <div className="mb-3">
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => {
-                  navigate("/forgot-password");
-                }}
-              >
-                Forgot password
-              </button>
-            </div> */}
-
-
-
-
-
-
-
-
-
-
             <button type="submit" className="btn btn-primary">
               Login
             </button>
             {role === 0 && (
               <div className="mb-3">
-                <Link to="/forgot-password">Forgot Password</Link>
+                <Link to="/forgot-password" className="forgot-btn">
+                  Forgot Password ?
+                </Link>
               </div>
             )}
           </form>
         </div>
-
-
-
-        
       </Layout>
     </>
   );

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Row, Col } from "react-bootstrap";
 import { deepPurple, purple } from "@mui/material/colors";
 import "./../user/viewuser.css";
+import viewcomplain from "./../Complain/viewcomplain.jpg";
 import {
   BarChart,
   Bar,
@@ -111,7 +112,7 @@ const Viewfeedback = () => {
         {
           id: 0,
           value: averageServiceRatingPercentage,
-          name: "Avg Service Rating (%)",
+          name: "Positive Service Rating (%)",
           color: "#9F33FF", // Choose a color for average service rating
         },
         {
@@ -125,123 +126,131 @@ const Viewfeedback = () => {
   ];
 
   return (
-    <div style={{ margin: "auto" }}>
-      <h1
-        style={{
-          textAlign: "center",
-          marginBottom: "20px",
-          fontWeight: "bold",
-        }}
-      >
-        Upcoming Feedback
-      </h1>
+    <div
+      style={{
+        backgroundImage: `url(${viewcomplain})`,
+        backgroundSize: "cover",
+        minHeight: "100vh",
+      }}
+    >
+      <div style={{ margin: "auto" }}>
+        <h1
+          style={{
+            textAlign: "center",
+            marginBottom: "20px",
+            fontWeight: "bold",
+          }}
+        >
+          Upcoming Feedback
+        </h1>
 
-      {totalFeedback === 0 ? (
-        <p>No upcoming feedback available</p>
-      ) : (
-        <div>
-          <Row className="justify-content-center">
-            {/* Display the Average Food Rating Pie Chart */}
-            <Col
-              md={6}
-              style={{
-                border: "1px solid #ccc",
-                borderRadius: "8px",
-                marginBottom: "20px",
-                marginRight: 30,
-                display: "flex",
-                justifyContent: "center",
-                alignContent: "center",
-                padding: "20px",
-                minWidth: "300px",
-                maxWidth: "400px",
-                width: "100%",
-              }}
-            >
-              <PieChart width={300} height={300}>
-                <Pie
-                  data={FoodData[0].data}
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={80}
-                  fill="#8884d8"
-                  label
-                >
-                  {FoodData[0].data.map((entry, index) => (
-                    <Cell key={index} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip />
-                <Legend />
-              </PieChart>
-            </Col>
+        {totalFeedback === 0 ? (
+          <p>No upcoming feedback available</p>
+        ) : (
+          <div>
+            <Row className="justify-content-center">
+              {/* Display the Average Food Rating Pie Chart */}
+              <Col
+                md={6}
+                style={{
+                  border: "1px solid #ccc",
+                  borderRadius: "8px",
+                  marginBottom: "20px",
+                  marginRight: 30,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignContent: "center",
+                  padding: "20px",
+                  minWidth: "300px",
+                  maxWidth: "400px",
+                  width: "100%",
+                }}
+              >
+                <PieChart width={300} height={300}>
+                  <Pie
+                    data={FoodData[0].data}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    fill="#8884d8"
+                    label
+                  >
+                    {FoodData[0].data.map((entry, index) => (
+                      <Cell key={index} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                  <Legend />
+                </PieChart>
+              </Col>
 
-            {/* Display the Average Service Rating Pie Chart */}
-            <Col
-              md={6}
-              style={{
-                border: "1px solid #ccc",
-                borderRadius: "8px",
-                marginBottom: "20px",
-                marginLeft: 30,
-                padding: "20px",
-                display: "flex",
-                justifyContent: "center",
-                alignContent: "center",
-                minWidth: "300px",
-                maxWidth: "400px",
-                width: "100%",
-              }}
-            >
-              <PieChart width={300} height={300}>
-                <Pie
-                  data={ServiceData[0].data}
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={80}
-                  fill="#8884d8"
-                  label
-                >
-                  {ServiceData[0].data.map((entry, index) => (
-                    <Cell key={index} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip />
-                <Legend />
-              </PieChart>
-            </Col>
-          </Row>
+              {/* Display the Average Service Rating Pie Chart */}
+              <Col
+                md={6}
+                style={{
+                  border: "1px solid #ccc",
+                  borderRadius: "8px",
+                  marginBottom: "20px",
+                  marginLeft: 30,
+                  padding: "20px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignContent: "center",
+                  minWidth: "300px",
+                  maxWidth: "400px",
+                  width: "100%",
+                }}
+              >
+                <PieChart width={300} height={300}>
+                  <Pie
+                    data={ServiceData[0].data}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={80}
+                    fill="#8884d8"
+                    label
+                  >
+                    {ServiceData[0].data.map((entry, index) => (
+                      <Cell key={index} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                  <Legend />
+                </PieChart>
+              </Col>
+            </Row>
 
-          <Row className="justify-content-center">
-            {feedback.map((item, index) => (
-              <Col key={index} md={4} className="mb-4">
-                <div
-                  className="flip-card"
-                  style={{
-                    width: 400,
-                    margin: "0 auto", // Center the card horizontally
-                  }}
-                >
-                  <div className="flip-card-inner">
-                    <div className="flip-card-front">
-                      <p className="title"></p>
-                      <strong>Name: {item.name || "No Name"}</strong>
-                      <br />
-                      <strong>Food Rating: {item.foodRating}</strong>
-                      <br />
-                      <strong>Service Rating: {item.serviceRating}</strong>
-                    </div>
-                    <div className="flip-card-back">
-                      <p className="title"></p>
-                      <strong>Feedback: {item.feedback}</strong>
+            <Row className="justify-content-center">
+              {feedback.map((item, index) => (
+                <Col key={index} md={4} className="mb-4">
+                  <div
+                    className="flip-card"
+                    style={{
+                      width: 400,
+                      margin: "0 auto", // Center the card horizontally
+                    }}
+                  >
+                    <div className="flip-card-inner">
+                      <div className="flip-card-front">
+                        <p className="title"></p>
+                        <strong>Name: {item.name || "No Name"}</strong>
+                        <br />
+                        <strong>Food Rating: {item.foodRating}</strong>
+                        <br />
+                        <strong>Service Rating: {item.serviceRating}</strong>
+                      </div>
+                      <div className="flip-card-back">
+                        <p className="title"></p>
+                        <strong>Feedback: {item.feedback}</strong>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Col>
-            ))}
-          </Row>
-        </div>
-      )}
+                </Col>
+              ))}
+            </Row>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -33,7 +33,11 @@ import Expenses from "./pages/expenses/Expenses";
 import Viewexpenses from "./pages/expenses/viewexpenses";
 
 import Viewpayments from "./pages/payment/viewpayments";
-import Createnotice from "./pages/Notice/Createnotice.js";
+
+import Guest from "./pages/Guest/Guest";
+import GuestPayment from "./pages/Guest/GuestPayment";
+import Receipt from "./pages/Guest/Receipt";
+import CreateNotice from "./pages/Notice/Createnotice";
 
 function App() {
   return (
@@ -44,6 +48,8 @@ function App() {
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="student" element={<Dashboard />} />
         </Route>
+
+        <Route path="/guest" element={<Guest />} />
 
         {/* feedback and complain routes  */}
         <Route path="/dashboard/student/complain" element={<Complain />} />
@@ -56,7 +62,7 @@ function App() {
 
         <Route
           path="/dashboard/warden/createnotice"
-          element={<Createnotice />}
+          element={<CreateNotice />}
         ></Route>
 
         <Route
@@ -129,6 +135,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<Pagenotfound />} />
         <Route path="/dashboard/student/nutrition" element={<Nutrition />} />
+
+        <Route path="/guest/payment" element={<GuestPayment />} />
+        <Route path="/guestreceipt" element={<Receipt />} />
       </Routes>
     </>
   );

@@ -4,6 +4,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import "./Expenses.css";
+import guest from "./../Guest/guest.jpg";
+import { useEffect } from "react";
+
 const Expenses = () => {
   const [food, setFood] = useState("");
   const [general, setGeneral] = useState("");
@@ -45,11 +48,20 @@ const Expenses = () => {
   };
 
   return (
-    <>
-      <Layout title="Expenses">
-        <div id="notice-form" style={{ marginTop: "20px" }}>
+    <Layout title="Expenses">
+      <div
+        style={{
+          backgroundImage: `url(${guest})`,
+          backgroundSize: "cover",
+          minHeight: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div id="notice1-form">
           <form onSubmit={handleSubmit}>
-            <h4 className="title" style={{ marginBottom: "20px" }}>
+            <h4 className="title" style={{ marginBottom: "10px" }}>
               Expenses Form
             </h4>
             <div className="mb-3">
@@ -140,8 +152,8 @@ const Expenses = () => {
             </button>
           </form>
         </div>
-      </Layout>
-    </>
+      </div>
+    </Layout>
   );
 };
 

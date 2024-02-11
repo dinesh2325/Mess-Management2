@@ -26,6 +26,13 @@ import {
   createNoticeController,
   showAllNoticesController,
   getNoticePdfController,
+  updatephotoController,
+  displayphotoController,
+  createGuestController,
+  getGuestDataByEmail,
+  braintreeTokenController,
+  brainTreePaymentController,
+  receiptController,
 } from "./../controllers/generalController.js";
 import {
   ApproveMenuReq,
@@ -83,6 +90,7 @@ router.post("/unblockuser", unblockUserController);
 router.get("/viewFilteredUsers", viewFilteredUsersController);
 router.get("/myprofile", viewSingleuserController);
 router.put("/updateProfile/:userId", updatesingleuserController);
+
 router.post("/payment/:userid", formidable(), paymentController);
 //get payments
 router.get("/getpayment", getallpayment);
@@ -107,5 +115,23 @@ router.get("/allnotices", showAllNoticesController);
 
 //show pdf
 router.get("/downloadpdf/:noticeId", getNoticePdfController);
+//update photo
+router.put("/updatephoto/:userId", updatephotoController);
+//get photo
+router.get("/avatar", displayphotoController);
+
+//geust data
+router.get("/guestdetail", getGuestDataByEmail);
+
+//guest
+router.post("/guests", createGuestController);
+
+//payment braintree
+//token
+router.get("/braintree", braintreeTokenController);
+//payment
+//payments
+router.post("/braintree/payment", brainTreePaymentController);
+router.get("/receipt/:id", receiptController);
 
 export default router;

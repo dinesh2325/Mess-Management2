@@ -1,5 +1,8 @@
 Result Skip Results Iframe
 EDIT ON
+
+
+
 .ag-format-container {
   width: 1142px;
   margin: 0 auto;
@@ -32,7 +35,7 @@ EDIT ON
 .ag-courses-item_link {
   display: block;
   padding: 30px 20px;
-  background: radial-gradient(circle, rgb(255, 208, 191) 0%, rgb(253, 123, 84) 100%);
+  background: radial-gradient(circle,rgb(135, 225, 119)0%, #99E54D 100%);
   text-decoration: none;
 
   overflow: hidden;
@@ -80,7 +83,7 @@ EDIT ON
 .ag-courses-item_bg {
   height: 128px;
   width: 128px;
-  background-color: #fc6348;
+  background-color: rgb(127, 189, 65);
 
   z-index: 1;
   position: absolute;
@@ -94,19 +97,19 @@ EDIT ON
   transition: all 1s ease;
 }
 .ag-courses_item:nth-child(2n) .ag-courses-item_bg {
-  background-color: #fc6348;
+  background-color: rgb(127, 189, 65);
 }
 .ag-courses_item:nth-child(3n) .ag-courses-item_bg {
-  background-color: #fc6348;
+  background-color: rgb(127, 189, 65);
 }
 .ag-courses_item:nth-child(4n) .ag-courses-item_bg {
-  background-color: #fc6348;
+  background-color: rgb(127, 189, 65);
 }
 .ag-courses_item:nth-child(5n) .ag-courses-item_bg {
-  background-color: #fc6348;
+  background-color: rgb(127, 189, 65);
 }
 .ag-courses_item:nth-child(6n) .ag-courses-item_bg {
-  background-color: #fc6348;
+  background-color: rgb(127, 189, 65);
 }
 
 
@@ -145,3 +148,4 @@ EDIT ON
     font-size: 16px;
   }
 }
+/* } */

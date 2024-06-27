@@ -15,16 +15,15 @@ connectDB();
 
 // middleware
 app.use(express.json()); //for handling json req
-app.use(morgan("dev"));  //for getting http req links
+app.use(morgan("dev")); //for getting http req links
 dotenv.config({ path: "./.env" });
 app.use(cors());
 
 //routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/general", generalRoutes);
-
 const PORT = process.env.PORT || 8080;
-
+//hello
 //server listening
 app.listen(PORT, (req, res) => {
   console.log(`server is running on port ${PORT}`);

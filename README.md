@@ -73,7 +73,9 @@ Feel free to reach out if you encounter any issues or have any questions. Be Hea
 ## Authors
 
 - [Dinesh Paliwal](https://github.com/dinesh2325)
+- [Karishma Verma](https://github.com/karishmaverma29)
 - [Himanshu Sharma](https://github.com/Himanshumnnit)
+
 
 
 ## Tech Stack Used 
@@ -95,20 +97,22 @@ Frontend:
 - Bootstrap, Material-UI, or other UI libraries (optional): For styling and designing the user interface.
 
 
-## 🚀 About Me
+## 🚀 About Me and My team
 "Hello everyone,
 
-I'm a passionate full-stack developer with a strong foundation in the MERN stack and a knack for utilizing development tools to streamline the process. 🚀💻
+Me and my team is a passionate full-stack developer with a strong foundation in the MERN stack and a knack for utilizing development tools to streamline the process. 🚀💻
 
-With extensive knowledge of MongoDB, Express.js, React.js, and Node.js, I thrive on transforming ideas into functional and elegant solutions. Let's collaborate to bring your vision to life! 🌟✨
+With extensive knowledge of MongoDB, Express.js, React.js, and Node.js, we thrive on transforming ideas into functional and elegant solutions. Let's collaborate to bring your vision to life! 🌟✨
 
 Happy coding! 💫"
 
 
 ## 🔗 Links
+Karishma: [![Github](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/karishmaverma29)
 Himanshu: [![Github](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/Himanshumnnit)
 Dinesh: [![Github](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/dinesh2325)
 
+Karishma: [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)]( https://in.linkedin.com/in/karishmaverma29)
 Himanshu: [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/himanshu-sharma-021023283/)
 Dinesh: [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dinesh-kumar-paliwal/)
 

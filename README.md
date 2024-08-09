@@ -2,6 +2,8 @@
 
 "Experience hassle-free mess management with our streamlined website, offering a seamless user experience enriched with exceptional features."
 
+PPT Link: https://1drv.ms/p/s!Ajh1vIRCp5GJiVb726nayqPnjDx-?e=MdfSPp
+
 
 ## Features
 
